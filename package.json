@@ -2,10 +2,13 @@
   "name": "@vitoria-gasteiz/vg-lib",
   "version": "1.0.0",
   "description": "Librería compartida de utilidades para proyectos web del Ayuntamiento de Vitoria-Gasteiz",
+  "type": "module",
   "main": "dist/vg-lib.iife.js",
   "module": "dist/vg-lib.esm.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "deploy:dev": "node scripts/deploy.js dev",
+    "deploy:desa": "node scripts/deploy.js desa"
   },
   "files": [
     "dist/"
@@ -26,6 +29,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-terser": "^0.4.4",
+    "dotenv": "^17.2.0",
     "rollup": "^3.0.0"
   },
   "dependencies": {
