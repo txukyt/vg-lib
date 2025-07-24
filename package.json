@@ -5,6 +5,16 @@
   "type": "module",
   "main": "dist/vg-lib.iife.js",
   "module": "dist/vg-lib.esm.js",
+   "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/vg-lib.iife.js"
+    },
+    "./components/saludo.js": {
+      "import": "./dist/esm/components/saludo.js",
+      "require": "./dist/vg-lib.iife.js"
+    }
+  },
   "scripts": {
     "build": "rollup -c",
     "deploy:dev": "node scripts/deploy.js dev",
