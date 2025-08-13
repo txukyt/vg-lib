@@ -1,5 +1,4 @@
-import Polyglot from 'node-polyglot';
-import { lang } from '@/utils/lang';
+import { t, getI18nInstance, init as initI18n } from '@/i18n/index.js';
 
 function accionAbrirCerrarMenuContextual(menu) {
   return (evt) => {
@@ -10,21 +9,10 @@ function accionAbrirCerrarMenuContextual(menu) {
 }
 
 function generarBotonShowHide(menu) {
-  const idioma = lang();
-  const polyglot = new Polyglot();
-  polyglot.extend({
-    extra: {
-      es: { menu: 'Más', resultados: 'Filtrar resultados' },
-      eu: { menu: 'Gehiago', resultados: 'Iragazi emaitzak' },
-      en: { menu: 'Menu', resultados: 'Filter results' },
-      fr: { menu: 'Menu', resultados: 'Filtrer les résultats' },
-    },
-  });
-
   const element = document.createElement('button');
   const resultElement = document.querySelector('.result');
   const key = resultElement ? 'resultados' : 'menu';
-  const texto = polyglot.t(`extra.${idioma}.${key}`);
+  const texto = t(`extra.${idioma}.${key}`);
   element.classList.add('extra-content__toogle-btn');
   element.dataset.text = texto;
   element.innerHTML = texto;
@@ -99,8 +87,9 @@ function initMenuContextual(menu) {
   menu.innerHTML = `<span class="nombre_tema">${menu.firstChild.textContent}</span>`;
 }
 
-function init(menu) {
+async function init(menu) {
   if (!menu) return;
+  if(!getI18nInstance()) await initI18n();
   wrapContenidoDelMenuParaHacerScroll(menu);
   const boton = generarBotonShowHide(menu);
   menu.insertBefore(boton, menu.firstChild);
@@ -108,7 +97,7 @@ function init(menu) {
   menu.parentNode.insertBefore(generarCapaOscurecer(menu), menu.nextSibling);
 }
 
-function habilitarMenuContextualEnMovil() {
+function enableOnMobile() {
   limpiarHtmlBasuraAntiguo();
   unirMenusConsecutivos(document.querySelector('.extra-content'));
   init(document.querySelector('.extra-content'));
@@ -116,6 +105,6 @@ function habilitarMenuContextualEnMovil() {
 }
 
 // Export ES Module
-export const menuContextual = {
-  habilitarMenuContextualEnMovil,
+export const aside = {
+  enableOnMobile,
 };

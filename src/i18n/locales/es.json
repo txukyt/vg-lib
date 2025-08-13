@@ -1,0 +1,10 @@
+{
+  "saludo": {
+    "mensaje": "Hola, {{nombre}}",
+    "mundo": "mundo"
+  },
+  "extra": {
+    "menu": "Más",
+    "resultados": "Filtrar resultados"
+  }
+}
