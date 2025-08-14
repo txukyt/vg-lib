@@ -7,10 +7,10 @@ import en from './locales/en.json';
 import fr from './locales/fr.json';
 
 const resources = {
-  es: { translation: es },
-  eu: { translation: eu },
-  en: { translation: en },
-  fr: { translation: fr },
+  es: { global: es },
+  eu: { global: eu },
+  en: { global: en },
+  fr: { global: fr },
 };
 
 export async function init() {
