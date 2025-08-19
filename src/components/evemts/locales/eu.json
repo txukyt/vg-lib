@@ -1,0 +1,47 @@
+{
+  "idioma": { "lang": "eu-EU", "texto": "Euskera" },
+  "idiomaCelebracion": {
+    "es": "Gaztelania",
+    "eu": "Euskara",
+    "en": "Ingelesa",
+    "fr": "Frantsesa",
+    "bl": "Elebiduna",
+    "it": "Italiarra",
+    "de": "Aleman"
+  },
+  "texto": {
+    "titulo": {
+      "agenda": "Jarduerak bilatu",
+      "cancelado": "[ BERTAN BEHERA UTZITA ]",
+      "botonBuscar": "Bilaketa",
+      "inputTexto": "Testu",
+      "inputFechaDesdeHasta": "Noiztik - Noiz arte",
+      "inputQuitarFiltros": "Iragazkiak kendu",
+      "inputCerrarMenuFiltros": "Itxi iragazki menua",
+      "inputAplicarFiltros": "Iragazkiak aplikatu",
+      "enlaceRSS": "Deskargatu RSS",
+      "enlaceDescargarCalendario": "iCalendar deskargatu",
+      "resutadosVistaListado": "Ekitaldien zerrenda",
+      "mobileFiltrar": "Iragazi",
+      "mobileBotonFiltrar": "Iragazi",
+      "mobileVerResultados": "Ikusi emaitzak",
+      "verMasResultados": "Ikusi emaitza gehiago",
+      "noHayDatos": "Ez dago emaitzarik zure bilaketarako. Saiatu beste bilaketa-irizpide batzuekin.",
+      "botonSegmentadoExposiciones": "Erakusketak",
+      "botonSegmentadoActividades": "Jarduerak"
+    },
+    "placeholder": {
+      "fechaDesdeHasta": "yyyy/MM/dd - yyyy/MM/dd",
+      "buscar": "bilaketa egiteko testua"
+    },
+    "separador": "eta",
+    "formatoFecha": "%{month} %{day} %{dayWeek}%{year}",
+    "error": {
+      "cargarFecth": "Arazo bat izan da bilaketa egitean.<br />Saiatu berriro minutu batzuk barru edo administratzailearekin kontaktatu. Barka enbarazua."
+    },
+    "repeat": "Zenbait data"
+  },
+  "formato": {
+    "fecha": "YYYY/MM/DD"
+  }
+}

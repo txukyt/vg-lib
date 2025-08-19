@@ -1,4 +1,4 @@
-// src/init.js
+// src/core/init.js
 import { showVersion } from '@/utils/version';
 import { init as initI18n } from '@/i18n';
 import { init as initBreadcrumb } from '@/components/breadcrumb';

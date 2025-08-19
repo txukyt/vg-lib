@@ -1,0 +1,47 @@
+{
+  "idioma": { "lang": "es-ES", "texto": "Castellano" },
+  "idiomaCelebracion": {
+    "es": "Castellano",
+    "eu": "Euskera",
+    "en": "Inglés",
+    "fr": "Francés",
+    "bl": "Bilingüe",
+    "it": "Italiano",
+    "de": "Alemán"
+  },
+  "texto": {
+    "titulo": {
+      "agenda": "Búsqueda de eventos",
+      "cancelado": "[ SUSPENDIDO ]",
+      "botonBuscar": "Buscar",
+      "inputTexto": "Texto",
+      "inputFechaDesdeHasta": "Fecha desde - hasta",
+      "inputQuitarFiltros": "Quitar filtros",
+      "inputCerrarMenuFiltros": "Cerrar menu filtros",
+      "inputAplicarFiltros": "Aplicar filtros",
+      "enlaceRSS": "Descargar RSS",
+      "enlaceDescargarCalendario": "Descargar iCalendar",
+      "resutadosVistaListado": "Listado de eventos",
+      "mobileFiltrar": "Filtrar por",
+      "mobileBotonFiltrar": "Filtrar",
+      "mobileVerResultados": "Ver resultados",
+      "verMasResultados": "Ver más resultados",
+      "noHayDatos": "No hay resultados para tu consulta. Prueba con otros criterios de búsqueda.",
+      "botonSegmentadoExposiciones": "Exposiciones",
+      "botonSegmentadoActividades": "Actividades"
+    },
+    "placeholder": {
+      "fechaDesdeHasta": "dd/MM/yyyy - dd/MM/yyyy",
+      "buscar": "escribe el texto a buscar"
+    },
+    "separador": "y",
+    "formatoFecha": "%{dayWeek} %{day} %{month}%{year}",
+    "error": {
+      "cargarFecth": "Hubo un problema al reaizar la búsqueda.<br />Vuelva a intentarlo dentro de unos minutos o contacte con el administrador. Disculpe las molestias."
+    },
+    "repeat": "Varias fechas"
+  },
+  "formato": {
+    "fecha": "DD/MM/YYYY"
+  }
+}

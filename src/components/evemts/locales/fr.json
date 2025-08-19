@@ -1,0 +1,47 @@
+{
+  "idioma": { "lang": "fr-FR", "texto": "Français" },
+  "idiomaCelebracion": {
+    "es": "Espagnol",
+    "eu": "Basque",
+    "en": "Anglais",
+    "fr": "Français",
+    "bl": "Bilingue",
+    "it": "Italien",
+    "de": "Allemand"
+  },
+  "texto": {
+    "titulo": {
+      "agenda": "Recherche d'événements",
+      "cancelado": "[ ANNULÉ ]",
+      "botonBuscar": "Rechercher",
+      "inputTexto": "Texte",
+      "inputFechaDesdeHasta": "Date de - à",
+      "inputQuitarFiltros": "Supprimer les filtres",
+      "inputCerrarMenuFiltros": "Fermer le menu des filtres",
+      "inputAplicarFiltros": "Appliquer les filtres",
+      "enlaceRSS": "Télécharger RSS",
+      "enlaceDescargarCalendario": "Télécharger le calendrier",
+      "resutadosVistaListado": "Liste des événements",
+      "mobileFiltrar": "Filtrer par",
+      "mobileBotonFiltrar": "Filtrer",
+      "mobileVerResultados": "Voir les résultats",
+      "verMasResultados": "Voir plus de résultats",
+      "noHayDatos": "Il n'y a aucun résultat pour votre requête. Essayez d'autres critères de recherche.",
+      "botonSegmentadoExposiciones": "Des expositions",
+      "botonSegmentadoActividades": "Activités"
+    },
+    "placeholder": {
+      "fechaDesdeHasta": "dd/MM/yyyy - dd/MM/yyyy",
+      "buscar": "écrivez le texte à rechercher"
+    },
+    "separador": "et",
+    "formatoFecha": "%{dayWeek} %{day} %{month}%{year}",
+    "error": {
+      "cargarFecth": "Un problème est survenu lors de la recherche.<br />Merci de réessayer dans quelques minutes ou veuillez contacter le Webmaster. Merci de nous excuser."
+    },
+    "repeat": "Différentes dates"
+  },
+  "formato": {
+    "fecha": "DD/MM/YYYY"
+  }
+}

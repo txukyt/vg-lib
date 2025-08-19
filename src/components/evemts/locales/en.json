@@ -1,0 +1,47 @@
+{
+  "idioma": { "lang": "en-US", "texto": "English" },
+  "idiomaCelebracion": {
+    "es": "Spanish",
+    "eu": "Basque",
+    "en": "English",
+    "fr": "French",
+    "bl": "Bilingual",
+    "it": "Italian",
+    "de": "German"
+  },
+  "texto": {
+    "titulo": {
+      "agenda": "Events search",
+      "cancelado": "[ CANCELLED ]",
+      "botonBuscar": "Search",
+      "inputTexto": "Text",
+      "inputFechaDesdeHasta": "Date from - to",
+      "inputQuitarFiltros": "Remove filters",
+      "inputCerrarMenuFiltros": "Close filter menu",
+      "inputAplicarFiltros": "Apply filters",
+      "enlaceRSS": "Download RSS",
+      "enlaceDescargarCalendario": "Download RSS",
+      "resutadosVistaListado": "List of events",
+      "mobileFiltrar": "Filter by",
+      "mobileBotonFiltrar": "Filter",
+      "mobileVerResultados": "See the results",
+      "verMasResultados": "See more results",
+      "noHayDatos": "There are no results for your query. Try other search criteria.",
+      "botonSegmentadoExposiciones": "Art exhibitions",
+      "botonSegmentadoActividades": "Activities"
+    },
+    "placeholder": {
+      "fechaDesdeHasta": "MM/dd/yyyy - MM/dd/yyyy",
+      "buscar": "search for this text"
+    },
+    "separador": "and",
+    "formatoFecha": "%{dayWeek} %{day} %{month}%{year}",
+    "error": {
+      "cargarFecth": "There was a problem performing the search.<br />Try again in a few minutes or contact the administrator. We apologise for any inconvenience."
+    },
+    "repeat": "Various dates"
+  },
+  "formato": {
+    "fecha": "MM/DD/YYYY"
+  }
+}
