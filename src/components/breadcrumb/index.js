@@ -1,13 +1,5 @@
-import { t, getI18nInstance, init as initI18n, extendI18next } from "@/i18n";
-
-import es from './locales/es.json';
-
-// Namespace global del componente
-const NS = 'Breadcrumb';
-
-const resources = {
-  es: { translation: es },
-};
+import { t } from "@/i18n";
+import { registerBreadcrumbI18n, NS } from "@/components/breadcrumb/i18n";
 
 function breadcrumbFactory(navNode) {
     navNode.setAttribute("role", "navigation");
@@ -15,10 +7,7 @@ function breadcrumbFactory(navNode) {
 }
 
 export async function init() {
-    const i18n = getI18nInstance();
-    if (i18n) await initI18n();
-
-    extendI18next(NS, resources);
+    await registerBreadcrumbI18n();
 
     const breadcrumbs = document.querySelectorAll(".breadcrumb");
 

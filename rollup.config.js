@@ -2,6 +2,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import json from "@rollup/plugin-json";
 import babel from "@rollup/plugin-babel";
 import alias from "@rollup/plugin-alias";
+import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 
 import { fileURLToPath } from 'url';
@@ -10,46 +11,68 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default [
-  // 1) Bundle ESM con preserveModules: emite cada módulo por separado
-  {
-    input: "src/index.js",
-    plugins: [
-      alias({ entries: [
+// ----------------------------
+// 🔧 Plugins base
+// ----------------------------
+const basePlugins = [
+   alias({ entries: [
         { find: '@pkg', replacement: path.resolve(__dirname, 'package.json') },
         { find: '@',    replacement: path.resolve(__dirname, 'src') }
       ]}),
-      resolve(),
-      json(),
-      babel({ babelHelpers: "bundled", exclude: "node_modules/**" })
-    ],
-    output: {
-      dir: 'dist/esm',
-      format: 'esm',
-      sourcemap: true,
-      entryFileNames: '[name].js',
-      preserveModules: false,
-      preserveModulesRoot: 'src'
-    }
-  },
-  // 2) Bundle IIFE único para navegador
-  {
-    input: "src/index.js",
-    plugins: [
-      alias({ entries: [
-        { find: '@pkg', replacement: path.resolve(__dirname, 'package.json') },
-        { find: '@',    replacement: path.resolve(__dirname, 'src') }
-      ]}),
-      resolve(),
-      json(),
-      babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
-      terser()
-    ],
-    output: {
-      file: "dist/vg-lib.iife.js",
-      format: "iife",
-      name: "VGLib",
-      sourcemap: true
-    }
-  }
+  resolve(),
+  json(),
+  babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
+  replace({
+    preventAssignment: true,
+    __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
+  })
 ];
+
+// Plugins de producción (minificación)
+const prodPlugins = [...basePlugins, terser()];
+
+// ----------------------------
+// 📦 Build ESM oficial
+// ----------------------------
+const buildEsm = {
+  input: "src/index.js",
+  output: {
+    dir: 'dist/esm',
+    format: 'esm',
+    sourcemap: true,
+    entryFileNames: '[name].js',
+    preserveModules: false,
+    preserveModulesRoot: 'src'
+  },
+  plugins: basePlugins,
+};
+
+// ----------------------------
+// 📦 Build IIFE oficial (minificado)
+// ----------------------------
+const buildIife = {
+  input: "src/index.js",
+  output: {
+    file: "dist/vg-lib.iife.js",
+    format: "iife",
+    name: "VGLib",
+    sourcemap: true
+  },
+  plugins: prodPlugins,
+};
+
+// ----------------------------
+// 🔧 Build DEV (solo equipo)
+// ----------------------------
+const buildDev = {
+  input: "src/dev-tools.js",
+  output: {
+    file: "dist/dev/dev.js",
+    format: "iife",
+    name: "VgDev",
+    sourcemap: true,
+  },
+  plugins: basePlugins,
+};
+
+export default [buildEsm, buildIife, buildDev];
