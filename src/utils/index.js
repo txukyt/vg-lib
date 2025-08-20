@@ -1,17 +1,8 @@
-//import { context } from '@/utils/context';
-import { ready } from '@/utils/dom';
-import { hash } from "@/utils/hash";
-import { lang } from "@/utils/lang";
-import { uid } from "@/utils/uid";
-import { showVersion } from "@/utils/version";
-import { isDesktopViewport } from "@/utils/viewport";
-
-export const utils = {
-  //  context,
-    ready,
-    hash,
-    lang,
-    uid,
-    showVersion,
-    isDesktopViewport
-};
+export * from '@/utils/dom/dom';
+export * from '@/utils/dom/customElements';
+export * from '@/utils/data/hash';
+export * from '@/utils/data/uid';
+export * from '@/utils/i18n/lang';
+export * from '@/utils/context/context';
+export * from '@/utils/env/version';
+export * from '@/utils/env/viewport';

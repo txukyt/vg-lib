@@ -1,10 +1,10 @@
 // src/core/init.js
-import { showVersion } from '@/utils/version';
+import { showVersion } from '@/utils/browser/version';
 import { init as initI18n } from '@/i18n';
 import { init as initBreadcrumb } from '@/components/breadcrumb';
 import { init as initButtons } from '@/components/buttons';
 import { aside } from '@/components/aside';
-import { ready } from '@/utils/dom';
+import { ready } from '@/utils/dom/ready';
 
 // Lista de funciones de inicialización
 const inits = [

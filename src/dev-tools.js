@@ -1,7 +1,7 @@
 if (__DEV__) {
-  window.VgLibDev = window.VgLibDev || {};
+  window.VgDev = window.VgDev || {};
 
-  window.VgLibDev.listCookies = function () {
+  window.VgDev.listCookies = function () {
     if (!document.cookie) {
       console.log("⚠️ No hay cookies visibles desde JS");
       return;
@@ -12,18 +12,19 @@ if (__DEV__) {
     console.groupEnd();
   };
 
-  window.VgLibDev.clearCookie = function (name) {
+  window.VgDev.clearCookie = function (name) {
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
     console.log(`🍪 Cookie "${name}" borrada`);
   };
 
-  window.VgLibDev.clearAllCookies = function () {
+  window.VgDev.clearAllCookies = function () {
     const cookies = document.cookie.split(";");
     for (const cookie of cookies) {
       const eqPos = cookie.indexOf("=");
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
       document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
     }
     console.log("🔥 Todas las cookies borradas");
   };
+
 }

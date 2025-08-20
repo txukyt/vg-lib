@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import { lang } from '@/utils/lang.js';
+import { lang } from '@/utils/lang/lang.js';
 
 import es from './locales/es.json';
 import eu from './locales/eu.json';

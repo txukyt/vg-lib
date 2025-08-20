@@ -1,6 +1,6 @@
 // components/toggle/toggle-button.js
 import { attachToggleDismiss, detachToggleDismiss } from '@/events/toggle-dismiss-event.js';
-import { isDesktopViewport } from '@/utils/viewport.js';
+import { isDesktopViewport } from '@/utils/browser/viewport.js';
 import { onViewportChange } from '@/events/viewport-event.js';
 
 export const toggleButtonProto = {

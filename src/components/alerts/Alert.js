@@ -1,6 +1,6 @@
 // src/components/alerts/Alert.js
-import { hash } from '@/utils/hash';
-import { uid } from '@/utils/uid';
+import { hash } from '@/utils/data/hash';
+import { uid } from '@/utils/data/uid';
 
 export class Alert {
   constructor(text, options = {}) {
