@@ -1,3 +1,4 @@
+
 export function clearLocalStorage() {
   localStorage.clear();
   console.log("🧹 localStorage borrado completamente");

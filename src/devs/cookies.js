@@ -1,3 +1,4 @@
+
 export function listCookies() {
   if (!document.cookie) {
     console.log("⚠️ No hay cookies visibles desde JS");

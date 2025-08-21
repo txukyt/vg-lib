@@ -1,3 +1,4 @@
+
 export function browserInfo() {
   console.group("🌐 Información del navegador");
   console.log("User Agent:", navigator.userAgent);
