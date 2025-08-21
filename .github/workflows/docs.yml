@@ -19,7 +19,7 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
-      - name: Generar documentación
+      - name: Generar documentación con JSDoc
         run: npx jsdoc -c jsdoc.json
 
       - name: Deploy a GitHub Pages
