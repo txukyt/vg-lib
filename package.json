@@ -21,7 +21,8 @@
     "deploy:dev": "node scripts/deploy.js dev",
     "deploy:desa": "node scripts/deploy.js desa",
     "deploy:pre": "node scripts/deploy.js pre",
-    "deploy:prod": "node scripts/deploy.js prod"
+    "deploy:prod": "node scripts/deploy.js prod",
+    "docs": "jsdoc -c jsdoc.json"
   },
   "files": [
     "dist/"
@@ -43,6 +44,7 @@
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-terser": "^0.4.4",
     "dotenv": "^17.2.0",
+    "jsdoc": "^4.0.4",
     "rollup": "^3.0.0"
   },
   "dependencies": {

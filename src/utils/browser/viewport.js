@@ -1,7 +1,7 @@
 /**
  * Indica si la resolución actual corresponde a escritorio (>= 1200px).
- * @param {*} minWidth 
- * @returns 
+ * @param {*} minWidth
+ * @returns {boolean}
  */
 export function isDesktopViewport(minWidth = 1200) {
   return window.matchMedia(`(min-width: ${minWidth}px)`).matches;
