@@ -1,6 +1,7 @@
 const template = document.createElement("template");
 
 template.innerHTML = `    
+
     <section id="avisoCookies" class="container-cookies">
         <!-- AVISO COOKIES -->
         <p data-i18n="cookies:paragraph.one"></p>

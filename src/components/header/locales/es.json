@@ -1,0 +1,13 @@
+{
+    "titulo": "INTRANET",
+    "herramientas": "Herramientas",
+    "web": "Web",
+    "formulario": {
+        "buscar": "Buscar",
+        "placeholder": "Buscar en la intranet"
+    },
+    "idiomas": {
+        "es": "Castellano",
+        "eu": "Euskara"
+    }
+}

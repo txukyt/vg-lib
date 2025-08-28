@@ -20,4 +20,6 @@ export const initialize = () => {
   inits.forEach((fn) => typeof fn === 'function' && fn());
 };
 
-ready(() => initialize());
+/*if (typeof window !== 'undefined') {
+  ready(() => initialize());
+}*/

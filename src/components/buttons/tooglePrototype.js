@@ -4,6 +4,7 @@ import { isDesktopViewport } from '@/utils/browser/viewport.js';
 import { onViewportChange } from '@/events/viewport-event.js';
 
 export const toggleButtonProto = {
+  root: null,
   node: null,
   controls: null,
   _clickHandler: null,
@@ -15,9 +16,10 @@ export const toggleButtonProto = {
    */
   init(buttonNode) {
     this.node = buttonNode;
+    this.root = buttonNode.getRootNode();
 
     const controlledId = this.node.getAttribute('aria-controls');
-    this.controls = controlledId ? document.getElementById(controlledId) : null;
+    this.controls = controlledId ? this.root.getElementById(controlledId) : null;
 
     if (!this.controls) {
       console.warn('toggleButtonProto: no se encontró la capa asociada');

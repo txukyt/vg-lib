@@ -1,0 +1,13 @@
+{
+    "titulo": "INTRANET",
+    "herramientas": "Tresnak",
+    "web": "Web",
+    "formulario": {
+        "buscar": "Bilatu",
+        "placeholder": "Bilatu intraneten"
+    },
+    "idiomas": {
+        "es": "Castellano",
+        "eu": "Euskara"
+    }
+}

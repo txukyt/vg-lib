@@ -14,6 +14,7 @@ const __dirname = path.dirname(__filename);
 // ----------------------------
 // 🔧 Plugins base
 // ----------------------------
+
 const basePlugins = [
    alias({ entries: [
         { find: '@pkg', replacement: path.resolve(__dirname, 'package.json') },
@@ -29,7 +30,20 @@ const basePlugins = [
 ];
 
 // Plugins de producción (minificación)
-const prodPlugins = [...basePlugins, terser()];
+const prodPlugins = [
+  ...basePlugins, 
+  babel({
+    babelHelpers: "bundled",
+    include: [
+    'src/**',           // tu código
+    'node_modules/i18next/**' // transpila i18next
+    ],
+    //exclude: "node_modules/**",
+    presets: [
+      ["@babel/preset-env", { targets: { ie: "11" }, modules: false }]
+    ]
+  }),
+  terser()];
 
 // ----------------------------
 // 📦 Build ESM oficial
@@ -41,10 +55,12 @@ const buildEsm = {
     format: 'esm',
     sourcemap: true,
     entryFileNames: '[name].js',
-    preserveModules: false,
+    preserveModules: true,
     preserveModulesRoot: 'src'
   },
-  plugins: basePlugins,
+  plugins: [...basePlugins, 
+    babel({ babelHelpers: "bundled", exclude: "node_modules/**" })
+  ],  
 };
 
 // ----------------------------

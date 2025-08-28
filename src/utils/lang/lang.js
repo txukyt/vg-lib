@@ -5,3 +5,13 @@ export function lang() {
   }
   return idioma;
 }
+
+export function changeLang(lang) {
+  const url = new URL(window.location.href);
+
+  url.searchParams.set('lang', lang);
+  url.searchParams.set('locale', lang);
+  url.searchParams.set('idioma', lang);
+
+  window.location.href = url.toString();
+}
