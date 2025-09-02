@@ -24,6 +24,12 @@ export class Header extends HTMLElement {
 
     const shadow = this.attachShadow({ mode: "open" });
     shadow.appendChild(templateContent.cloneNode(true));
+
+      const slot = shadow.querySelector('slot[name="languages"]');
+      slot.addEventListener('slotchange', () => {
+        console.log('El slot "languages" ha cambiado');
+      });
+    
   }
 
   async connectedCallback() {
@@ -36,7 +42,7 @@ export class Header extends HTMLElement {
     );
     if (idiomaButton) idiomaButton.textContent = t(`header:idiomas.${locale}`);
 
-    const link = this.shadowRoot.querySelector(`.nav-link__changelang[data-lang="${locale}"]`);
+    const link = this.shadowRoot.querySelector(`.header-utils__lang-menu__changelang[data-lang="${locale}"]`);
     link.parentElement.classList.add('active');
 
     this.shadowRoot.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -51,15 +57,18 @@ export class Header extends HTMLElement {
       else el.textContent = text;
     });
 
-    init(this.shadowRoot);
+    init(this.shadowRoot, '.nav-link-toggle');
 
-    const langLinks = this.shadowRoot.querySelectorAll(".nav-link__changelang");
+    const langLinks = this.shadowRoot.querySelectorAll(".header-utils__lang-menu__changelang");
     langLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         changeLang(link.dataset.lang);
       });
     });
+
+      
+
 
     console.log("<vg-header-intranet> register from page.");
   }

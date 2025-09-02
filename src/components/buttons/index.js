@@ -6,8 +6,8 @@ function toggleButtonFactory(btn) {
   return instance;
 }
 
-export function init(root = document) {
-  const toggleButtons = root.querySelectorAll(".nav-link-toggle");
+export function init(root = document, className) {
+  const toggleButtons = root.querySelectorAll(className);
   toggleButtons.forEach((btn) => {
     toggleButtonFactory(btn);
   });
