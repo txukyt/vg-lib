@@ -1,16 +1,29 @@
-name: Deploy Docson:push:branches: [main]jobs:build-docs:runs-on: ubuntu-latestpermissions:contents: write # Añadido: Permiso de escritura para el bot de GitHub Actionssteps:- name: Checkout códigouses: actions/checkout@v4  - name: Configurar Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: 20
+name: Deploy Docs
 
-  - name: Instalar dependencias
-    run: npm ci
+on:
+  push:
+    branches: [main]
 
-  - name: Generar documentación con JSDoc
-    run: npx jsdoc -c jsdoc.json
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
 
-  - name: Deploy a GitHub Pages
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-      publish_dir: ./docs
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Generar documentación con JSDoc
+        run: npx jsdoc -c jsdoc.json
+
+      - name: Deploy a GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
