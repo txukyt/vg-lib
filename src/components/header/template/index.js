@@ -15,32 +15,22 @@ template.innerHTML = `
 							</a>
 						</li>
 						<li>
-							<a class="nav-link" href="/j28-02i/gw/estructuraArbolAction.do?idioma=es">
+							<a class="nav-link" href="${__URL_INTRA__}/j28-02i/gw/estructuraArbolAction.do?idioma=es">
 								<span class="nav-link__icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M240-160q-33 0-56.5-23.5T160-240q0-33 23.5-56.5T240-320q33 0 56.5 23.5T320-240q0 33-23.5 56.5T240-160Zm240 0q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm240 0q-33 0-56.5-23.5T640-240q0-33 23.5-56.5T720-320q33 0 56.5 23.5T800-240q0 33-23.5 56.5T720-160ZM240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400ZM240-640q-33 0-56.5-23.5T160-720q0-33 23.5-56.5T240-800q33 0 56.5 23.5T320-720q0 33-23.5 56.5T240-640Zm240 0q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Zm240 0q-33 0-56.5-23.5T640-720q0-33 23.5-56.5T720-800q33 0 56.5 23.5T800-720q0 33-23.5 56.5T720-640Z"/></svg></span>
 								<span class="nav-link__text" data-i18n="header:herramientas"></span>
 							</a>
 						</li>
 						<li>
-							<a class="nav-link" href="https://www.vitoria-gasteiz.org/">
+							<a class="nav-link" href="${__URL_WEB__}/wb021/was/we001Action.do?accionWe001=ficha&accion=home">
 								<span class="nav-link__icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M172.31-180Q142-180 121-201q-21-21-21-51.31v-455.38Q100-738 121-759q21-21 51.31-21h615.38Q818-780 839-759q21 21 21 51.31v455.38Q860-222 839-201q-21 21-51.31 21H172.31Zm0-60H590v-147.69H160v135.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85ZM650-240h137.69q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-343.07H650V-240ZM160-447.69h430v-147.69H160v147.69Z"/></svg></span>
 								<span class="nav-link__text" data-i18n="header:web"></span>
 							</a>
 						</li>
 						<li>
-							<button class="nav-link nav-link-toggle nav-link__lang" id="dropdownLangButton" aria-controls="menu-lang" aria-expanded="false">
+							<button class="nav-link nav-link-toggle nav-link__lang" id="dropdownLangButton" aria-controls="dropdownLang" aria-expanded="false">
 								<span class="nav-link__icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z"></path></svg></span>
 								<span class="nav-link__text"></span>
 							</button>
-							<slot name="languages">
-								<ul id="menu-lang" class="header-utils__lang-menu" aria-labelledby="dropdownLangButton">
-									<li class="header-utils__lang-menu__item">
-										<button class="header-utils__lang-menu__changelang" data-lang="es" data-i18n="header:idiomas.es"></button>
-									</li>
-									<li class="header-utils__lang-menu__item">
-										<button class="header-utils__lang-menu__changelang" data-lang="eu" data-i18n="header:idiomas.eu"></button>
-									</li>
-								</ul>
-							</slot>
 						</li>
 						<li class="toggle-wrapper toggle-wrapper__search">
 							<button class="nav-link nav-link-toggle nav-link__search" id="dropdownSearchButton" aria-controls="search-area" aria-expanded="false" data-disable-toggle-desktop><span class="nav-link__icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></span></button>									
@@ -48,7 +38,7 @@ template.innerHTML = `
 					</ul>
 
 					<div id="search-area" class="search-area" aria-labelledby="dropdownSearchButton">
-						<form class="nav-form" id="frmBusqueda" name="frmBusqueda" action="/ib025/was/buscadorGoogleAction.do">
+						<form class="nav-form" id="frmBusqueda" name="frmBusqueda" action="${__URL_INTRA__}/ib025/was/buscadorGoogleAction.do">
 							<input type="hidden" name="idioma" />
 							<input type="text" id="terminoIntranet" name="termino" maxlength="50" onfocus="this.select();" value="" data-i18n="header:formulario.placeholder"/>
 							<input name="buscar" type="submit" class="botonCabecera" data-i18n="header:formulario.buscar"/>  		

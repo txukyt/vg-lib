@@ -27,6 +27,8 @@ const basePlugins = [
     preventAssignment: true,
     __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
      __URL_MAIN__: JSON.stringify(process.env.URL_MAIN),
+     __URL_INTRA__: JSON.stringify(process.env.URL_INTRA),
+     __URL_WEB__: JSON.stringify(process.env.URL_WEB),
   })
 ];
 
