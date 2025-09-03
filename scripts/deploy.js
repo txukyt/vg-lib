@@ -27,7 +27,7 @@ if (result.error) {
 }
 
 // 3️⃣ Ejecutar build
-console.log(`📦 Construyendo vg-lib para entorno: ${env}`);
+console.log(`📦 Construyendo j38-lib para entorno: ${env}`);
 execSync('npm run build', { stdio: 'inherit' });
 
 // 4️⃣ Funciones auxiliares
@@ -85,7 +85,7 @@ async function crearDirectorioParaParteEnBuzon(tomorrow = false) {
 // 6️⃣ deployConParte usando copyFolderRecursive
 async function deployConParte(directorioParaParte) {
   const msgInicio = `Despliegue a ${env.toUpperCase()}: `;
-  const dest = join(directorioParaParte, 'Http_Comunes', 'comun', 'j38-01');
+  const dest = join(directorioParaParte, 'Http_Comunes', 'comun', 'libs', 'vg', 'j38-lib', 'last');
 
   console.log(`${msgInicio}Copiando los archivos del parte a: ${dest}`);
   await copyFolderRecursive(resolve(__dirname, '../dist'), dest);

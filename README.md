@@ -1,4 +1,4 @@
-# vg-lib
+# j38-lib
 
 **Librería compartida de utilidades JavaScript para los proyectos web del Ayuntamiento de Vitoria-Gasteiz.**
 
@@ -11,13 +11,13 @@ Diseñada como un conjunto modular reutilizable, con soporte para ES Modules, Ro
 ### Desde npm (cuando esté publicada):
 
 ```bash
-npm install @vitoria-gasteiz/vg-lib
+npm install @vitoria-gasteiz/j38-lib
 ```
 
 ### Desde GitHub directamente:
 
 ```bash
-npm install github:txukyt/vg-lib
+npm install github:txukyt/j38-lib
 ```
 
 ## 🧩 Uso
@@ -25,17 +25,17 @@ npm install github:txukyt/vg-lib
 ### En un entorno JavaScript moderno (ESM):
 
 ```js
-import { saludar, showVersion, version } from '@vitoria-gasteiz/vg-lib';
+import { saludar, showVersion, version } from '@vitoria-gasteiz/j38-lib';
 
 saludar('Ane');
-showVersion(); // vg-lib v1.0.0
+showVersion(); // j38-lib v1.0.0
 console.log(version); // "1.0.0"
 ```
 
 ### En entorno HTML/WordPress:
 
 ```html
-<script src="/http/comun/mjs/vg-lib.iife.js"></script>
+<script src="/http/comun/mjs/j38-lib.iife.js"></script>
 <script>
   VGLib.saludar('Igor');
   VGLib.showVersion();
@@ -49,8 +49,8 @@ console.log(version); // "1.0.0"
 Clona el repositorio:
 
 ```bash
-git clone https://github.com/txukyt/vg-lib.git
-cd vg-lib
+git clone https://github.com/txukyt/j38-lib.git
+cd j38-lib
 npm install
 ```
 
@@ -62,8 +62,8 @@ npm run build
 
 Genera:
 
-- `dist/vg-lib.iife.js` → para navegadores
-- `dist/vg-lib.esm.js`  → para uso con `import`
+- `dist/j38-lib.iife.js` → para navegadores
+- `dist/j38-lib.esm.js`  → para uso con `import`
 
 ---
 
@@ -92,7 +92,7 @@ Esto:
 ## 📁 Estructura del proyecto
 
 ```
-vg-lib/
+j38-lib/
 ├── dist/                 # Archivos generados por Rollup
 ├── src/                  # Código fuente
 │   ├── components/

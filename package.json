@@ -1,18 +1,18 @@
 {
-  "name": "@vitoria-gasteiz/vg-lib",
+  "name": "@vitoria-gasteiz/j38-lib",
   "version": "1.0.5",
   "description": "Librería compartida de utilidades para proyectos web del Ayuntamiento de Vitoria-Gasteiz",
   "type": "module",
-  "main": "dist/vg-lib.iife.js",
-  "module": "dist/vg-lib.esm.js",
+  "main": "dist/j38-lib.iife.js",
+  "module": "dist/j38-lib.esm.js",
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/vg-lib.iife.js"
+      "require": "./dist/j38-lib.iife.js"
     },
     "./components/header.js": {
       "import": "./dist/esm/components/header.js",
-      "require": "./dist/vg-lib.iife.js"
+      "require": "./dist/j38-lib.iife.js"
     }
   },
   "scripts": {

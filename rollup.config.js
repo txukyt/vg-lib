@@ -72,7 +72,7 @@ const buildEsm = {
 const buildIife = {
   input: "src/index.js",
   output: {
-    file: "dist/vg-lib.iife.js",
+    file: "dist/j38-lib.iife.js",
     format: "iife",
     name: "VGLib",
     sourcemap: true
