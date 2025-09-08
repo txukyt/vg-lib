@@ -19,6 +19,8 @@
     "clean": "rmdir /s /q dist",
     "lint": "eslint .",
     "build": "rollup -c",
+    "prebuild": "npm run lint",
+    "postbuild": "npm run docs",
     "deploy:dev": "node scripts/deploy.js dev",
     "deploy:desa": "node scripts/deploy.js desa",
     "deploy:pre": "node scripts/deploy.js pre",

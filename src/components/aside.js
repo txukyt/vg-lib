@@ -1,4 +1,5 @@
 import { t, getI18nInstance, init as initI18n } from '@/i18n/index.js';
+import { lang } from '@/utils/lang'
 
 function accionAbrirCerrarMenuContextual(menu) {
   return (evt) => {
@@ -9,6 +10,7 @@ function accionAbrirCerrarMenuContextual(menu) {
 }
 
 function generarBotonShowHide(menu) {
+  const idioma = lang();
   const element = document.createElement('button');
   const resultElement = document.querySelector('.result');
   const key = resultElement ? 'resultados' : 'menu';
