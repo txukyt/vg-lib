@@ -7,7 +7,7 @@ export function throwTestError() {
 export function listGlobals() {
   console.group("🌍 Variables globales");
   for (let key in window) {
-    if (window.hasOwnProperty(key)) {
+    if (Object.hasOwn(window, key)) {
       console.log(key);
     }
   }

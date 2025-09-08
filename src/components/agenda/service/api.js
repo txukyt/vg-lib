@@ -16,16 +16,10 @@ async function doPost(url, params = "") {
   }
 }
 
-/**
- * Buscar eventos (primera búsqueda)
- */
 export function fetchBuscar(urlBase, params) {
   return doPost(urlBase, params);
 }
 
-/**
- * Cargar más eventos (scroll o botón "ver más")
- */
 export function fetchMasDatos(urlBase, params) {
   return doPost(urlBase, params);
 }

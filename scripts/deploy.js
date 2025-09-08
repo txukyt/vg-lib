@@ -109,8 +109,8 @@ async function deployConParte(directorioParaParte) {
       console.error('❌ DEPLOY_PATH no definido en el .env para dev');
       process.exit(1);
     }
-    console.log(`🚚 Desplegando archivos a: ${deployPath}`);
     await deleteFolderRecursive(deployPath);
+    console.log(`🚚 Desplegando archivos a: ${deployPath}`);
     await copyFolderRecursive(resolve(__dirname, '../dist'), deployPath);
   }
 })();

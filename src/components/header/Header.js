@@ -1,4 +1,3 @@
-//import { registerCookiesI18n } from "@/components/header/i18n";
 import template from "@/components/header/template";
 import { lang, changeLang } from "@/utils/lang/lang";
 import { init } from "@/components/buttons";
@@ -8,6 +7,10 @@ import { alert } from '@/components/alerts';
 
 export const ELEMENT_NAME = "vg-header-intranet";
 
+/**
+ * Clase que representa el encabezado de la aplicación de intranet.
+ * @class Header
+ */
 export class Header extends HTMLElement {
   #locale = lang();
 
@@ -58,12 +61,12 @@ export class Header extends HTMLElement {
       if (!this.#hasLanguageSelector()) {
 
         if(!this.#hasLanguageSelector(document)) {
-          this.#addLanguageSelector();
+          this.#appendLanguageSelector(this.#create());
         } else {
 
           const menuLang = document.querySelector('ul[id="dropdownLang"]');
 
-          this.#addLanguageSelector(menuLang);
+          this.#appendLanguageSelector(menuLang);
         }
       }
       init(this.shadowRoot, '.nav-link-toggle');
@@ -85,15 +88,7 @@ export class Header extends HTMLElement {
     return Boolean(root.querySelector('ul[id="dropdownLang"]'));
   }
 
-  #addLanguageSelector(langMenuHTML = this.#renderLanguageSelector()) {
-    // Buscamos el botón al que queremos asociar el menú
-    const button = this.shadowRoot.querySelector('button#dropdownLangButton');
-    if (button) {
-      button.insertAdjacentElement('afterend', langMenuHTML);
-    }
-  }
-
-  #renderLanguageSelector(languages = ['es', 'eu']) {
+  #create(languages = ['es', 'eu']) {
     const ul = document.createElement('ul');
     ul.id = 'dropdownLang';
     ul.className = 'dropdown-lang';
@@ -117,5 +112,12 @@ export class Header extends HTMLElement {
 
     return ul;
   }
+
+  #appendLanguageSelector(langMenuHTML) {
+    const button = this.shadowRoot.querySelector('button#dropdownLangButton');
+    if (button) {
+      button.insertAdjacentElement('afterend', langMenuHTML);
+    }
+  }  
 
 }

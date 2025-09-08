@@ -1,3 +1,5 @@
+import { config } from 'dotenv';
+import eslint from '@rollup/plugin-eslint';
 import resolve from "@rollup/plugin-node-resolve";
 import json from "@rollup/plugin-json";
 import babel from "@rollup/plugin-babel";
@@ -11,12 +13,16 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const isProduction = process.env.NODE_ENV === "production";
+
+config();
+
 // ----------------------------
 // 🔧 Plugins base
 // ----------------------------
-
 const basePlugins = [
-   alias({ entries: [
+  eslint(),
+  alias({ entries: [
         { find: '@pkg', replacement: path.resolve(__dirname, 'package.json') },
         { find: '@',    replacement: path.resolve(__dirname, 'src') }
       ]}),
@@ -32,22 +38,6 @@ const basePlugins = [
   })
 ];
 
-// Plugins de producción (minificación)
-const prodPlugins = [
-  ...basePlugins, 
-  babel({
-    babelHelpers: "bundled",
-    include: [
-    'src/**',           // tu código
-    'node_modules/i18next/**' // transpila i18next
-    ],
-    //exclude: "node_modules/**",
-    presets: [
-      ["@babel/preset-env", { targets: { ie: "11" }, modules: false }]
-    ]
-  }),
-  terser()];
-
 // ----------------------------
 // 📦 Build ESM oficial
 // ----------------------------
@@ -62,8 +52,8 @@ const buildEsm = {
     preserveModulesRoot: 'src'
   },
   plugins: [...basePlugins, 
-    babel({ babelHelpers: "bundled", exclude: "node_modules/**" })
-  ],  
+    isProduction && terser()
+  ].filter(Boolean)
 };
 
 // ----------------------------
@@ -77,7 +67,9 @@ const buildIife = {
     name: "VGLib",
     sourcemap: true
   },
-  plugins: prodPlugins,
+  plugins: [...basePlugins,
+    isProduction && terser()
+  ].filter(Boolean)
 };
 
 // ----------------------------
@@ -89,7 +81,7 @@ const buildDev = {
     file: "dist/dev/dev.js",
     format: "iife",
     name: "VgDev",
-    sourcemap: true,
+    sourcemap: false,
   },
   plugins: basePlugins,
 };

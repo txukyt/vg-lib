@@ -1,8 +1,4 @@
-/**
- * Registra eventos globales para cerrar la capa asociada
- * al toggle cuando se hace click fuera o se presiona Escape.
- * @param {Object} toggleInstance - Instancia con métodos getState y setState, y propiedades node y controls.
- */
+
 export function attachToggleDismiss(toggleInstance) {
   const { node, controls, root } = toggleInstance;
 
@@ -29,10 +25,6 @@ export function attachToggleDismiss(toggleInstance) {
   root.addEventListener('keydown', toggleInstance._escHandler);
 }
 
-/**
- * Elimina los eventos de auto-cierre previamente registrados.
- * @param {Object} toggleInstance
- */
 export function detachToggleDismiss(toggleInstance) {
  const { root } = toggleInstance;
 

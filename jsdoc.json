@@ -5,7 +5,7 @@
     "excludePattern": "(node_modules/|docs)"
   },
   "opts": {
-    "destination": "docs",
+    "destination": "./dist/docs",
     "recurse": true
   }
 }
