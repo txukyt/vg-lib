@@ -1,6 +1,6 @@
 {
   "name": "@txukyt/j38-lib",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Librería compartida de utilidades para proyectos web del Ayuntamiento de Vitoria-Gasteiz",
   "type": "module",
   "main": "dist/j38-lib.iife.js",
@@ -10,8 +10,8 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/j38-lib.iife.js"
     },
-    "./components/header.js": {
-      "import": "./dist/esm/components/header.js",
+    "./components/header": {
+      "import": "./dist/esm/components/header/index.js",
       "require": "./dist/j38-lib.iife.js"
     }
   },
