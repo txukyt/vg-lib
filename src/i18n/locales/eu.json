@@ -1,4 +1,8 @@
 {
+  "saludo": {
+    "mensaje": "Kaixo, {{nombre}}",
+    "mundo": "mundua"
+  },
   "extra": {
     "menu": "Gehiago",
     "resultados": "Iragazi emaitzak"

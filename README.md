@@ -11,7 +11,7 @@ Diseñada como un conjunto modular reutilizable, con soporte para ES Modules, Ro
 ### Desde npm (cuando esté publicada):
 
 ```bash
-npm install @vitoria-gasteiz/j38-lib
+npm install @txukyt/j38-lib
 ```
 
 ### Desde GitHub directamente:
@@ -128,7 +128,7 @@ console.log(pkg.version);
 
 ---
 
-## 📦 Publicación en npm (pendiente)
+## 📦 Publicación en npm
 
 Cuando esté listo para publicar:
 
@@ -141,4 +141,4 @@ npm publish --access=public
 
 ## 📄 Licencia
 
-MIT — © Ayuntamiento de Vitoria-Gasteiz
+MIT — © David Mora

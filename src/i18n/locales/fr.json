@@ -1,4 +1,8 @@
 {
+  "saludo": {
+    "mensaje": "Bonjour, {{nombre}}",
+    "mundo": "monde"
+  },
   "extra": {
     "menu": "Menu",
     "resultados": "Filtrer les résultats"
