@@ -25,11 +25,10 @@ npm install github:txukyt/j38-lib
 ### En un entorno JavaScript moderno (ESM):
 
 ```js
-import { saludar, showVersion, version } from '@vitoria-gasteiz/j38-lib';
+import { hello, showVersion } from '@txukyt/j38-lib';
 
-saludar('Ane');
-showVersion(); // j38-lib v1.0.0
-console.log(version); // "1.0.0"
+hello('Ane'); // Hola, Ane
+showVersion(); // Inicializando la libreria j38-lib de J38 con la versión: ${version}
 ```
 
 ### En entorno HTML/WordPress:
@@ -37,7 +36,7 @@ console.log(version); // "1.0.0"
 ```html
 <script src="/http/comun/mjs/j38-lib.iife.js"></script>
 <script>
-  VGLib.saludar('Igor');
+  VGLib.hello('Igor');
   VGLib.showVersion();
 </script>
 ```
@@ -63,7 +62,8 @@ npm run build
 Genera:
 
 - `dist/j38-lib.iife.js` → para navegadores
-- `dist/j38-lib.esm.js`  → para uso con `import`
+- `dist/dev/dev.js`  → para navegadores
+- `dist/esm/index.js`  → para uso con `import`
 
 ---
 
@@ -81,6 +81,8 @@ DEPLOY_PATH=D:/DEV-WAS8/website/serverX/http/comun/libs/vg
 ```bash
 npm run deploy:dev
 npm run deploy:desa
+npm run deploy:pre
+npm run deploy:prod
 ```
 
 Esto:

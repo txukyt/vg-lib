@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import { lang } from '@/utils/lang/lang.js';
+import { getLang } from '@/utils/lang/lang.js';
 
 import es from './locales/es.json';
 import eu from './locales/eu.json';
@@ -15,7 +15,7 @@ const resources = {
 
 export async function init() {
   await i18next.init({
-    lng: lang(),
+    lng: getLang(),
     fallbackLng: 'es',
     defaultNS: "global",
     debug: false,
@@ -44,6 +44,6 @@ export function t(key, options = {}) {
   return i18next.t(key, options);
 }
 
-export function getI18nInstance() {
-  return i18next;
-}
+(async () => {
+  await init();
+})();

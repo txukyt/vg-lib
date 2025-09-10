@@ -1,5 +1,5 @@
-import { t, getI18nInstance, init as initI18n } from '@/i18n/index.js';
-import { lang } from '@/utils/lang'
+import { t } from '@/i18n/index.js';
+import { getLang } from '@/utils/lang'
 
 function accionAbrirCerrarMenuContextual(menu) {
   return (evt) => {
@@ -10,7 +10,7 @@ function accionAbrirCerrarMenuContextual(menu) {
 }
 
 function generarBotonShowHide(menu) {
-  const idioma = lang();
+  const idioma = getLang();
   const element = document.createElement('button');
   const resultElement = document.querySelector('.result');
   const key = resultElement ? 'resultados' : 'menu';
@@ -91,7 +91,6 @@ function initMenuContextual(menu) {
 
 async function init(menu) {
   if (!menu) return;
-  if(!getI18nInstance()) await initI18n();
   wrapContenidoDelMenuParaHacerScroll(menu);
   const boton = generarBotonShowHide(menu);
   menu.insertBefore(boton, menu.firstChild);
