@@ -26,7 +26,8 @@
     "deploy:desa": "node scripts/deploy.js desa",
     "deploy:pre": "node scripts/deploy.js pre",
     "deploy:prod": "node scripts/deploy.js prod",
-    "docs": "jsdoc -c jsdoc.json"
+    "docs": "jsdoc -c jsdoc.json",
+    "prepublishOnly": "npm run build:prod"
   },
   "files": [
     "dist/"
