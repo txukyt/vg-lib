@@ -13,9 +13,10 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === "prod";
 
-config();
+const envFile = `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}`;
+config({ path: path.resolve(process.cwd(), envFile) });
 
 // ----------------------------
 // 🔧 Plugins base
