@@ -99,14 +99,28 @@ export class Header extends HTMLElement {
   }
 
   #appendLanguageSelector(templateNode) {
-    // Si la plantilla ya tiene el selector de idioma, no lo crea de nuevo.
-    if (templateNode.querySelector('ul[id="dropdownLang"]')) return;
-    
-    const langMenu = this.#createLanguageMenu(['es', 'eu']);
-    const button = templateNode.querySelector('button#dropdownLangButton');
-    if (button) {
-      button.insertAdjacentElement('afterend', langMenu);
+    const langMenuInTemplate = templateNode.querySelector('ul[id="dropdownLang"]');
+
+    if (langMenuInTemplate) {
+      return;
     }
+
+    const langMenuInDocument = document.querySelector('ul[id="dropdownLang"]');
+    const langButton = templateNode.querySelector('button#dropdownLangButton');
+    
+    if (!langButton) {
+      console.error('No se encontró el botón de idioma para adjuntar el selector.');
+      return;
+    }
+    
+    let langMenuToAppend;
+
+    if (langMenuInDocument) {
+      langMenuToAppend = langMenuInDocument;
+    } else {
+      langMenuToAppend = this.#createLanguageMenu(['es', 'eu']);
+    }
+    langButton.insertAdjacentElement('afterend', langMenuToAppend);
   }
 
   #createLanguageMenu(languages) {
