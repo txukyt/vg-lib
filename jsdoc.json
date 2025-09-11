@@ -4,6 +4,7 @@
         "includePattern": ".js$",
         "excludePattern": "(node_modules/|docs)"
     },
+    "plugins": ["plugins/markdown"],
     "opts": {
         "readme": "./README.md",
         "destination": "./dist/docs",
@@ -12,12 +13,16 @@
         "theme_opts": {
             "homepageTitle": "Documentación de j38-lib ",
             "default_theme": "dark",
-            "navMenuItems": [
+            "menu": [
                 {
-                    "label": "Inicio",
-                    "href": "index.html"
+                    "title": "README",
+                    "link": "index.html"
                 }
             ]
         }
+    },
+    "markdown": {
+        "hardwrap": false,
+        "idInHeadings": true
     }
 }

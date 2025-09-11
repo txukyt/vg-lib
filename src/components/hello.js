@@ -7,7 +7,6 @@ import { t } from '@/i18n/index.js';
  * @param {string} nombre - El nombre de la persona a saludar.
  * @returns {void}
  */
-
 export function hello(nombre = t('saludo.mundo')) {
   if (typeof window !== 'undefined') {
     alert(t('saludo.mensaje', { nombre }));

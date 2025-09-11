@@ -4,8 +4,6 @@
 
 Diseñada como un conjunto modular reutilizable, con soporte para ES Modules, Rollup, despliegue por entornos y versionado automático desde `package.json`.
 
----
-
 ## 🚀 Instalación
 
 ### Desde npm (cuando esté publicada):
@@ -19,6 +17,8 @@ npm install @txukyt/j38-lib
 ```bash
 npm install github:txukyt/j38-lib
 ```
+
+---
 
 ## 🧩 Uso
 
@@ -61,9 +61,9 @@ npm run build
 
 Genera:
 
-- `dist/j38-lib.iife.js` → para navegadores
-- `dist/dev/dev.js`  → para navegadores
-- `dist/esm/index.js`  → para uso con `import`
+* `dist/j38-lib.iife.js` → para navegadores
+* `dist/dev/dev.js`  → para navegadores
+* `dist/esm/index.js`  → para uso con `import`
 
 ---
 
@@ -86,8 +86,9 @@ npm run deploy:prod
 ```
 
 Esto:
-- Compila la librería
-- Copia los bundles a la ruta indicada en `.env.[entorno]`
+
+* Compila la librería
+* Copia los bundles a la ruta indicada en `.env.[entorno]`
 
 ---
 
@@ -110,8 +111,8 @@ j38-lib/
 
 ## 🔧 Alias configurados
 
-- `@` apunta a `src/`
-- `@pkg` apunta a `package.json` (para importar la versión desde el código)
+* `@` apunta a `src/`
+* `@pkg` apunta a `package.json` (para importar la versión desde el código)
 
 Ejemplo:
 
@@ -124,9 +125,9 @@ console.log(pkg.version);
 
 ## ✅ Requisitos
 
-- Node.js 18 o superior
-- npm 8+
-- Entornos preparados con rutas específicas de despliegue
+* Node.js 18 o superior
+* npm 8+
+* Entornos preparados con rutas específicas de despliegue
 
 ---
 
@@ -144,3 +145,5 @@ npm publish --access=public
 ## 📄 Licencia
 
 MIT — © David Mora
+
+---

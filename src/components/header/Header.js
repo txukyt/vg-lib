@@ -1,5 +1,3 @@
-// src/components/header/index.js
-
 import template from "@/components/header/template";
 import { getLang, changeLang } from "@/utils/lang/lang";
 import { init } from "@/components/buttons";
@@ -11,9 +9,20 @@ export const ELEMENT_NAME = "vg-header-intranet";
 
 /**
  * @class Header
- * @extends HTMLElement
+ * @extends {HTMLElement}
  * @description Clase que representa el encabezado de la aplicación de intranet.
+ * Este componente se encarga de:
+ * - Renderizar el template del encabezado.
+ * - Gestionar la internacionalización (i18n) del texto.
+ * - Configurar las URLs dinámicamente a partir de la configuración global.
+ * - Crear y gestionar el selector de idioma.
+ * - Inicializar los botones interactivos dentro del encabezado.
+ * @example 
+ * <vg-header-intranet></vg-header-intranet>
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Web_components}
+ * @author David Mora <david.mora.pedregosa@seidor.com>
  */
+
 export class Header extends HTMLElement {
   #locale;
   #config;
