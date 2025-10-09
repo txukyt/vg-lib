@@ -1,5 +1,5 @@
-import { t } from '@/i18n/index.js';
-import { getLang } from '@/utils/lang'
+import { t } from '@/i18n/index';
+import { getLang } from '@/utils/lang/lang'
 
 function accionAbrirCerrarMenuContextual(menu) {
   return (evt) => {

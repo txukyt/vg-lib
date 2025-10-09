@@ -3,7 +3,7 @@ import { getLang, changeLang } from "@/utils/lang/lang";
 import { init } from "@/components/buttons";
 import { registerHeaderI18n } from "@/components/header/i18n";
 import { t } from "@/i18n";
-import { getConfig } from '@/core/config.js';
+import { getConfig } from '@/core/config';
 
 export const ELEMENT_NAME = "vg-header-intranet";
 
