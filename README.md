@@ -1,5 +1,7 @@
 # j38-lib
 
+![npm version](https://img.shields.io/github/package-json/v/txukyt/vg-lib?color=blue&label=version)
+
 **Librería compartida de utilidades JavaScript para los proyectos web del Ayuntamiento de Vitoria-Gasteiz.**
 
 Diseñada como un conjunto modular reutilizable, con soporte para ES Modules, Rollup, despliegue por entornos y versionado automático desde `package.json`.
