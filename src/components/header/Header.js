@@ -72,11 +72,11 @@ export class Header extends HTMLElement {
 
     // Busca los spans con el atributo data-i18n y luego encuentra su <a> más cercano.
     templateNode.querySelector('span[data-i18n="header:titulo"]').closest('a').href = urlMain;
-    templateNode.querySelector('span[data-i18n="header:herramientas"]').closest('a').href = `${urlIntra}/j28-02i/gw/estructuraArbolAction.do?idioma=${this.#locale}&lang=${this.#locale}&locale=${this.#locale}`;
+    templateNode.querySelector('span[data-i18n="header:herramientas"]').closest('a').href = `$/j28-02i/gw/estructuraArbolAction.do?idioma=${this.#locale}&lang=${this.#locale}&locale=${this.#locale}`;
     templateNode.querySelector('span[data-i18n="header:web"]').closest('a').href = `${urlWeb}/wb021/was/we001Action.do?accionWe001=ficha&accion=home&idioma=${this.#locale}&lang=${this.#locale}&locale=${this.#locale}`;
 
     // Este selector estaba correcto, ya que el id está en el <form>.
-    templateNode.querySelector('form#frmBusqueda').action = `${urlIntra}/ib025/was/buscadorGoogleAction.do`;
+    templateNode.querySelector('form#frmBusqueda').action = `/ib025/was/buscadorGoogleAction.do`;
 
     // Asigna el idioma al input del formulario.
     const idiomaInput = templateNode.querySelector('input[name="idioma"][type="hidden"]');
