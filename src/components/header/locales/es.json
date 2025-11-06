@@ -6,6 +6,7 @@
         "buscar": "Buscar",
         "placeholder": "Buscar en la intranet"
     },
+    "idioma": "Idioma",
     "idiomas": {
         "es": "Castellano",
         "eu": "Euskara"

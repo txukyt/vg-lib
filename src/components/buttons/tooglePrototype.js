@@ -48,11 +48,10 @@ export const toggleButtonProto = {
         if (!this._initialized) {
           this._initializeToggle();
           this._initialized = true;
-        }
-
-        // En móvil, ocultar por defecto
-        if (!isDesktop && disabledOnDesktop) {
-          this.setState(false);
+          // En móvil, ocultar por defecto
+          if (!isDesktop && disabledOnDesktop) {
+            this.setState(false);
+          }
         }
       }
     };

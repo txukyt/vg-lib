@@ -105,6 +105,15 @@ export class Header extends HTMLElement {
     // Actualiza el texto del botón del idioma.
     const idiomaButton = templateNode.querySelector('.nav-link__lang > .nav-link__text');
     if (idiomaButton) idiomaButton.textContent = t(`header:idiomas.${this.#locale}`);
+
+    templateNode.querySelectorAll("[data-i18n-title]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-title");
+      const text = t(key);
+      if (!text) return;
+
+      el.setAttribute("title", text);
+      el.setAttribute("aria-label", text);
+    });
   }
 
   #appendLanguageSelector(templateNode) {
