@@ -20,7 +20,7 @@
     "lint": "eslint .",
     "build": "cross-env NODE_ENV=dev rollup -c ",
     "build:prod": "cross-env NODE_ENV=prod rollup -c",
-    "prebuild": "npm run lint",
+    "prebuild": "npm run clean && npm run lint",
     "postbuild": "npm run docs",
     "deploy:dev": "node scripts/deploy.js dev",
     "deploy:desa": "node scripts/deploy.js desa",

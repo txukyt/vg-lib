@@ -32,10 +32,11 @@ const basePlugins = [
   babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
   replace({
     preventAssignment: true,
-    __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
+    __DEV__: JSON.stringify(process.env.NODE_ENV !== "prod"),
      __URL_MAIN__: JSON.stringify(process.env.URL_MAIN),
      __URL_INTRA__: JSON.stringify(process.env.URL_INTRA),
      __URL_WEB__: JSON.stringify(process.env.URL_WEB),
+    __URL_EXTRANET__: JSON.stringify(process.env.URL_EXTRANET)
   })
 ];
 
@@ -81,7 +82,7 @@ const buildDev = {
   output: {
     file: "dist/dev/dev.js",
     format: "iife",
-    name: "VgDev",
+    name: "VGDev",
     sourcemap: false,
   },
   plugins: basePlugins,

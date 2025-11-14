@@ -19,6 +19,7 @@ export default [
         __URL_MAIN__: 'readonly',
         __URL_INTRA__: 'readonly',
         __URL_WEB__: 'readonly',
+        __URL_EXTRANET__: 'readonly',
       },
       
     },

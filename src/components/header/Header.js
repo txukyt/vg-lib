@@ -64,15 +64,29 @@ export class Header extends HTMLElement {
   }
 
   #updateTemplateLinks(templateNode) {
-    const { urlMain, urlIntra, urlWeb } = this.#config;
+
+    let { urlMain, urlIntra } = this.#config;
+    const { urlWeb, urlExtranet } = this.#config;
 
     if(!urlMain || !urlIntra || !urlWeb) {
-      throw new Error(`[${ELEMENT_NAME}] URLs de configuración faltantes. urlMain: ${urlMain}, urlIntra: ${urlIntra}, urlWeb: ${urlWeb}`);
+      throw new Error(`[${ELEMENT_NAME}] URLs de configuración faltantes. urlMain: ${urlMain}, urlIntra: ${urlIntra}, urlWeb: ${urlWeb}, urlExtranet: ${urlExtranet}`);
     }
+
+    const hostname = window.location.hostname;
+    
+    if(urlExtranet.includes(hostname)) {
+      urlMain = urlExtranet;
+      urlIntra = urlExtranet;
+    }
+
 
     // Busca los spans con el atributo data-i18n y luego encuentra su <a> más cercano.
     templateNode.querySelector('span[data-i18n="header:titulo"]').closest('a').href = urlMain;
-    templateNode.querySelector('span[data-i18n="header:herramientas"]').closest('a').href = `${urlIntra}/j28-02i/gw/estructuraArbolAction.do?idioma=${this.#locale}&lang=${this.#locale}&locale=${this.#locale}`;
+    if(urlExtranet.includes(hostname)) {
+      templateNode.querySelector('a[data-i18n-title="header:herramientas"]').parentNode.remove();
+    } else {
+      templateNode.querySelector('span[data-i18n="header:herramientas"]').closest('a').href = `${urlIntra}/j28-02i/gw/estructuraArbolAction.do?idioma=${this.#locale}&lang=${this.#locale}&locale=${this.#locale}`;
+    }
     templateNode.querySelector('span[data-i18n="header:web"]').closest('a').href = `${urlWeb}/wb021/was/we001Action.do?accionWe001=ficha&accion=home&idioma=${this.#locale}&lang=${this.#locale}&locale=${this.#locale}`;
 
     // Este selector estaba correcto, ya que el id está en el <form>.

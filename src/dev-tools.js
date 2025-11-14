@@ -6,7 +6,7 @@ import * as Dom from '@/devs/dom.js';
 import * as Performance from '@/devs/performance.js';
 
 if (__DEV__) {
-  window.VgDev = {
+  window.VGDev = {
     ...Cookies,
     ...Storage,
     ...Browser,
