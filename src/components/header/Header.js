@@ -80,7 +80,7 @@ export class Header extends HTMLElement {
     }
 
     // Busca los spans con el atributo data-i18n y luego encuentra su <a> más cercano.
-    templateNode.querySelector('span[data-i18n="header:titulo"]').closest('a').href = `${urlMain}/${this.#locale}/activity`;
+    templateNode.querySelector('span[data-i18n="header:titulo"]').closest('a').href = (this.#locale === "eu") ?`${urlMain}/${this.#locale}/activity` : `${urlMain}/activity`;
     if(urlExtranet.includes(hostname)) {
       templateNode.querySelector('a[data-i18n-title="header:herramientas"]').parentNode.remove();
     } else {
