@@ -36,7 +36,8 @@ const basePlugins = [
      __URL_MAIN__: JSON.stringify(process.env.URL_MAIN),
      __URL_INTRA__: JSON.stringify(process.env.URL_INTRA),
      __URL_WEB__: JSON.stringify(process.env.URL_WEB),
-    __URL_EXTRANET__: JSON.stringify(process.env.URL_EXTRANET)
+    __URL_EXTRANET__: JSON.stringify(process.env.URL_EXTRANET),
+    __URL_VPN__: JSON.stringify(process.env.URL_VPN)
   })
 ];
 
