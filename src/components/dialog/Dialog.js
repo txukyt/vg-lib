@@ -24,9 +24,9 @@ export default class Dialog {
     #breakpointObserver;
     #currentController;
 
-    constructor({dialogSelector, closeBtnSelector = "#dialog-close", openBtnSelector, contentSelector, options = {}}) {
+    constructor({ dialogSelector, closeBtnSelector = "#dialog-close", openBtnSelector, contentSelector, options = {} }) {
         if (__DEV__) {
-            this._debug = true; 
+            this._debug = true;
         }
 
         this.#settings = {
@@ -53,16 +53,16 @@ export default class Dialog {
 
         if (selector.startsWith('#') && selector.length > 1) {
             const id = selector.substring(1); // Quitar el '#'
-            
+
             element = document.createElement('dialog');
             element.id = id;
             element.innerHTML = DIALOG_TEMPLATE;
 
             const classes = [this.#settings.className, this.#settings.animationClass].filter(Boolean);
             element.className = classes.join(' ');
-            
+
             document.body.appendChild(element);
-            
+
             return element;
         }
 
@@ -73,10 +73,10 @@ export default class Dialog {
     #restoreContent() {
         // Verificamos si hay algo que restaurar y si tenemos la referencia del sitio (placeholder)
         if (this.#content && this.#placeholder && this.#placeholder.parentNode) {
-            
+
             // 1. Mover contenido antes del marcador
             this.#placeholder.parentNode.insertBefore(this.#content, this.#placeholder);
-            
+
             // 2. Eliminar el marcador
             this.#placeholder.remove();
             this.#placeholder = null;
@@ -88,14 +88,14 @@ export default class Dialog {
     }
 
     #setupA11y() {
-        if(!this.#dialog.getAttribute('aria-label')) {
+        if (!this.#dialog.getAttribute('aria-label')) {
             setAriaAttributes(this.#dialog, {
                 label: this.#settings.ariaLabel
             });
         }
         if (!this.#openBtn.getAttribute('aria-controls')) {
             setAriaControls(this.#openBtn, this.#dialog.id);
-            setAriaHasPopup(this.#openBtn); 
+            setAriaHasPopup(this.#openBtn);
         }
         if (!this.#closeBtn.getAttribute('aria-label')) {
             setAriaAttributes(this.#closeBtn, {
@@ -113,12 +113,12 @@ export default class Dialog {
     }
 
     #handleResponsiveLayout(isDesktop) {
-        this.#cleanup();     
+        this.#cleanup();
         isDesktop ? this.#setupDesktop() : this.#setupMobile();
 
         this.onLayoutChange(isDesktop);
     }
-    
+
     #cleanup() {
         if (this.#currentController) this.#currentController.abort();
         if (this.#dialog.open) this.#dialog.close();
@@ -145,7 +145,7 @@ export default class Dialog {
         const { signal } = this.#currentController;
 
         this.#openBtn.addEventListener('click', () => {
-            this.#dialog.showModal(); 
+            this.#dialog.showModal();
             resetElementScroll(this.#dialog.querySelector('.dialog-body'));
             disableScroll();
         }, { signal });
@@ -156,10 +156,10 @@ export default class Dialog {
 
         this.#dialog.addEventListener('click', (e) => {
             if (e.target === this.#dialog) {
-            this.#close();
+                this.#close();
             }
         }, { signal });
-        
+
         this.#dialog.addEventListener('close', () => {
             enableScroll();
         }, { signal });
@@ -168,7 +168,7 @@ export default class Dialog {
     #setupDesktop() {
     }
 
-    #close() {    
+    #close() {
         this.#dialog.close();
     }
 
