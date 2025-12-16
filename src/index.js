@@ -9,6 +9,10 @@ export { defineCookies } from '@/components/cookies/index.js';
 */
 export { defineHeader } from '@/components/header/index.js';
 
+export { initMainNav } from '@/components/main-nav/index.js';
+
+export { initContextualMenu } from '@/components/aside.js';
+
 export async function init(options) {
   configure(options);
 }

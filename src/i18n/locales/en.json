@@ -3,6 +3,16 @@
     "mensaje": "Hello, {{nombre}}",
     "mundo": "world"
   },
+  "dialog": {
+    "label" : {
+      "default": "Pop-up window",
+      "menuContextual": "Context menu",
+      "menuPrincipal": "Main menu",
+      "menuBusqueda": "Search menu",
+      "menuFiltros": "Filters menu"
+    },
+    "cerrar": "Close window"
+  },
   "extra": {
     "menu": "Menu",
     "resultados": "Filter results"

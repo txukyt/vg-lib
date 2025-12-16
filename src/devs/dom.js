@@ -15,3 +15,10 @@ export function countElements() {
   });
   console.table(tags);
 }
+
+export function initializeFocusListener() {
+  document.addEventListener('focusin', (event) => {
+    console.log('⚡ Foco cambiado a:', event.target); 
+    console.log('⚡ Etiqueta:', event.target.tagName);
+  });
+}

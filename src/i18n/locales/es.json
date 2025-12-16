@@ -3,6 +3,16 @@
     "mensaje": "Hola, {{nombre}}",
     "mundo": "mundo"
   },
+  "dialog": {
+    "label" : {
+      "default": "Ventana emergente",
+      "menuContextual": "Menú contextual",
+      "menuPrincipal": "Menú principal",
+      "menuBusqueda": "Menú de búsqueda",
+      "menuFiltros": "Menú de filtros"
+    },
+    "cerrar": "Cerrar ventana"
+  },
   "extra": {
     "menu": "Más",
     "resultados": "Filtrar resultados"

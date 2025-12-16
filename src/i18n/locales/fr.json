@@ -3,6 +3,16 @@
     "mensaje": "Bonjour, {{nombre}}",
     "mundo": "monde"
   },
+  "dialog": {
+    "label" : {
+      "default": "Fenêtre pop-up",
+      "menuContextual": "Menu contextuel",
+      "menuPrincipal": "Menu principal",
+      "menuBusqueda": "Menu de recherche",
+      "menuFiltros": "Menu des filtres"
+    },
+    "cerrar": "Fermer la fenêtre"
+  },
   "extra": {
     "menu": "Menu",
     "resultados": "Filtrer les résultats"

@@ -3,6 +3,16 @@
     "mensaje": "Kaixo, {{nombre}}",
     "mundo": "mundua"
   },
+  "dialog": {
+    "label" : {
+      "default": "Leiho pop-up",
+      "menuContextual": "Testuinguru menua",
+      "menuPrincipal": "Menu nagusia",
+      "menuBusqueda": "Bilaketa menua",
+      "menuFiltros": "Iragazte menua"
+    },
+    "cerrar": "Cerrar ventana"
+  },
   "extra": {
     "menu": "Gehiago",
     "resultados": "Iragazi emaitzak"

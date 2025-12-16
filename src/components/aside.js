@@ -1,111 +1,85 @@
-import { t } from '@/i18n/index';
-import { getLang } from '@/utils/lang/lang'
+// src/components/aside.js
+import Dialog from '@/components/dialog/Dialog';
+import { t } from "@/i18n";
 
-function accionAbrirCerrarMenuContextual(menu) {
-  return (evt) => {
-    menu.classList.toggle('extra-content--opened');
-    document.documentElement.classList.toggle('scroll-disabled');
-    evt.stopPropagation();
-  };
-}
+// --- CONSTANTES ---
+const SELECTORS = {
+    CONTAINER: 'aside',
+    DIALOG: '#aside-dialog',
+    // Esta clase la usaremos tanto para buscarlo como para crearlo
+    CONTENT_WRAPPER: 'extra-content__content', 
+    TOGGLE_BTN_CLASS: 'extra-content__toogle-btn'
+};
 
-function generarBotonShowHide(menu) {
-  const idioma = getLang();
-  const element = document.createElement('button');
-  const resultElement = document.querySelector('.result');
-  const key = resultElement ? 'resultados' : 'menu';
-  const texto = t(`extra.${idioma}.${key}`);
-  element.classList.add('extra-content__toogle-btn');
-  element.dataset.text = texto;
-  element.innerHTML = texto;
-  if (!resultElement) element.classList.add('menu');
-  element.addEventListener('click', accionAbrirCerrarMenuContextual(menu));
-  return element;
-}
+const TOGGLE_BTN_ICON = `
+    <span>${t("extra.menu")}</span>
+`;
 
-function generarCapaOscurecer(menu) {
-  const element = document.createElement('div');
-  element.classList.add('extra-content-close');
-  element.addEventListener('click', accionAbrirCerrarMenuContextual(menu));
-  return element;
-}
+// --- FUNCIONES DOM ---
 
-function generarEventoSwiped(boton, menu) {
-  document.addEventListener('swiped-down', (e) => {
-    e.stopPropagation();
-    if (menu.classList.contains('extra-content--opened')) boton.click();
-  });
-  menu.addEventListener('swiped-up', (e) => {
-    e.stopPropagation();
-    if (!menu.classList.contains('extra-content--opened')) boton.click();
-  });
-}
+/**
+ * Envuelve todo el contenido actual del contenedor en un nuevo div
+ * @param {HTMLElement} container 
+ */
+const ensureContentWrapper = (container) => {
+    // 1. Si ya existe el wrapper, no hacemos nada (idempotencia)
+    if (container.querySelector(`.${SELECTORS.CONTENT_WRAPPER}`)) return;
 
-function wrapContenidoDelMenuParaHacerScroll(menu) {
-  menu.innerHTML = `<div class="extra-content__content">${menu.innerHTML}</div>`;
-}
+    // 2. Crear el div wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = SELECTORS.CONTENT_WRAPPER;
 
-function unirMenusConsecutivos(menu) {
-  if (!menu) return;
-  menu.id = 'a11y-aside';
-  const menus = Array.from(menu.parentNode.children);
-  for (const m of menus) {
-    if (m.tagName?.toLowerCase() === 'aside' && m.isEqualNode && !m.isEqualNode(menu)) {
-      menu.innerHTML += m.innerHTML;
-      m.remove();
+    // 3. Mover todos los hijos actuales del container dentro del wrapper
+    // Usamos spread [...] para crear un array estático, ya que childNodes es "vivo" 
+    // y puede dar problemas al iterar mientras se mueve.
+    const children = [...container.childNodes];
+    
+    children.forEach(child => {
+        wrapper.appendChild(child);
+    });
+
+    // 4. Insertar el wrapper (que ahora contiene todo) de nuevo en el container
+    container.appendChild(wrapper);
+};
+
+/**
+ * Crea el botón al principio del contenedor (fuera del wrapper de contenido)
+ * @param {HTMLElement} container 
+ */
+const ensureToggleButton = (container) => {
+    if (container.querySelector(`.${SELECTORS.TOGGLE_BTN_CLASS}`)) return;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = SELECTORS.TOGGLE_BTN_CLASS;
+    btn.innerHTML = TOGGLE_BTN_ICON;
+
+    // Lo ponemos al principio (quedará encima/antes del wrapper)
+    container.prepend(btn);
+};
+
+// --- INICIALIZACIÓN ---
+
+export const initContextualMenu = () => {
+    const desktopContainer = document.querySelector(SELECTORS.CONTAINER);
+
+    if (!desktopContainer) return;
+
+    // PASO 1: Envolver el contenido existente (texto, links, etc.)
+    ensureContentWrapper(desktopContainer);
+
+    // PASO 2: Crear el botón (quedará fuera del wrapper, ideal para que no se oculte con él)
+    ensureToggleButton(desktopContainer);
+
+    // PASO 3: Iniciar Dialog
+    new Dialog({
+        dialogSelector: SELECTORS.DIALOG,
+        openBtnSelector: `.${SELECTORS.TOGGLE_BTN_CLASS}`,
+        contentSelector: `.${SELECTORS.CONTENT_WRAPPER}`, // Pasamos la clase del nuevo wrapper
+        options: { animationClass: 'drawer-bottom', breakpoint: 991, ariaLabel: t('dialog.label.menuContextual') }
+    }).mount();
+
+    if (__DEV__) {
+        console.log('✅ Menú contextual: Wrapper y Botón generados.');
     }
-  }
-}
-
-function limpiarHtmlBasuraAntiguo() {
-  const viejo = document.querySelector('.aside-tabletMobile');
-  if (viejo) {
-    const parent = viejo.parentNode;
-    parent.removeChild(viejo.previousElementSibling);
-    parent.removeChild(viejo);
-  }
-}
-
-function comparar2Arrays(a, b) {
-  if (a.length !== b.length) return false;
-  const uniqueValues = new Set([...a, ...b]);
-  return [...uniqueValues].every(v => {
-    const aCount = a.filter(e => e === v).length;
-    const bCount = b.filter(e => e === v).length;
-    return aCount === bCount;
-  });
-}
-
-function initMenuContextual(menu) {
-  if (!menu?.firstChild) return;
-  const url = window.location.href;
-  const enlace = menu.firstChild.href;
-  const urlId = url.split('?')[0];
-  const enlaceId = enlace?.split('?')[0];
-  const urlParams = url.includes('?') ? url.split('?')[1].split('&') : null;
-  const enlaceParams = enlace?.includes('?') ? enlace.split('?')[1].split('&') : null;
-  if (!urlId || !enlaceId || !urlParams || !enlaceParams) return;
-  if (urlId !== enlaceId || !comparar2Arrays(urlParams, enlaceParams)) return;
-  menu.innerHTML = `<span class="nombre_tema">${menu.firstChild.textContent}</span>`;
-}
-
-async function init(menu) {
-  if (!menu) return;
-  wrapContenidoDelMenuParaHacerScroll(menu);
-  const boton = generarBotonShowHide(menu);
-  menu.insertBefore(boton, menu.firstChild);
-  generarEventoSwiped(boton, menu);
-  menu.parentNode.insertBefore(generarCapaOscurecer(menu), menu.nextSibling);
-}
-
-function enableOnMobile() {
-  limpiarHtmlBasuraAntiguo();
-  unirMenusConsecutivos(document.querySelector('.extra-content'));
-  init(document.querySelector('.extra-content'));
-  initMenuContextual(document.querySelector('.texto.primero'));
-}
-
-// Export ES Module
-export const aside = {
-  enableOnMobile,
 };
