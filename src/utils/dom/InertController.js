@@ -1,3 +1,5 @@
+import { enableScroll, disableScroll } from "@/utils/dom/scroll.js";
+
 export default class InertController {
   #targets = new Set();
   #lockScroll;
@@ -89,7 +91,7 @@ export default class InertController {
   lock() {
     if (this.#lockScroll) {
       // Usa tu utilidad o clase CSS preferida
-      document.body.classList.add('scroll-disabled');
+      disableScroll();
     }
     
     this.#targets.forEach(el => {
@@ -105,7 +107,7 @@ export default class InertController {
 
   unlock() {
     if (this.#lockScroll) {
-      document.body.classList.remove('scroll-disabled');
+      enableScroll();
     }
     
     this.#targets.forEach(el => {

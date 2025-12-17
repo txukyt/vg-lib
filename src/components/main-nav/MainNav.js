@@ -1,4 +1,5 @@
 import Dialog from '@/components/dialog/Dialog.js';
+import InertController from '@/utils/dom/InertController';
 
 const SELECTORS = {
     DIALOG: '#menu-dialog',
@@ -10,6 +11,7 @@ const SELECTORS = {
 export default class MainNav extends Dialog {
     #details;
     #currentController;
+    #inertController;
 
     constructor() {
         super({
@@ -50,7 +52,6 @@ export default class MainNav extends Dialog {
         }
     }
 
-
     #setupMobile(signal) {
         this.#details.forEach(detail => {
             const backBtn = detail.querySelector(SELECTORS.BACK_BTN);
@@ -61,6 +62,35 @@ export default class MainNav extends Dialog {
                 }, { signal }); 
             }
         });
+
+      const focusableSelectors = [
+        'details:not(:open)',
+        `details:not(:open) ${SELECTORS.BACK_BTN}`,
+        '.main-menu--smartphone-utils'
+      ].join(',');    
+
+        this.#details.forEach(detail => {
+            detail.addEventListener('toggle', () => {        
+                if(detail.open) {
+
+                    if (this.#inertController) {
+                        this.#inertController.unlock();
+                    }
+
+                    const dialog = this.element;
+                    const elementos = dialog.querySelectorAll(focusableSelectors);
+                    this.#inertController = new InertController(elementos);
+                    this.#inertController.lock();
+
+                } else {
+                    if (this.#inertController) {
+                        this.#inertController.unlock();
+                        this.#inertController = null; // Limpiamos la referencia
+                    }                
+                }
+            });
+        });
+
     }
 
     #setupDesktop(signal) {        

@@ -8,7 +8,8 @@ const SELECTORS = {
     DIALOG: '#aside-dialog',
     // Esta clase la usaremos tanto para buscarlo como para crearlo
     CONTENT_WRAPPER: 'extra-content__content', 
-    TOGGLE_BTN_CLASS: 'extra-content__toogle-btn'
+    TOGGLE_BTN_CLASS: 'extra-content__toogle-btn',
+    TOOGLE_BTN_KEYNAV: '#a11y-aside-trigger'
 };
 
 const TOGGLE_BTN_ICON = `
@@ -72,12 +73,32 @@ export const initContextualMenu = () => {
     ensureToggleButton(desktopContainer);
 
     // PASO 3: Iniciar Dialog
-    new Dialog({
+    const asideDialog = new Dialog({
         dialogSelector: SELECTORS.DIALOG,
         openBtnSelector: `.${SELECTORS.TOGGLE_BTN_CLASS}`,
         contentSelector: `.${SELECTORS.CONTENT_WRAPPER}`, // Pasamos la clase del nuevo wrapper
-        options: { animationClass: 'drawer-bottom', breakpoint: 991, ariaLabel: t('dialog.label.menuContextual') }
-    }).mount();
+        options: { 
+            animationClass: 'drawer-bottom', 
+            breakpoint: 991, 
+            ariaLabel: t('dialog.label.menuContextual'),
+            title: t("extra.menu")
+         }
+    });
+
+    asideDialog.mount();
+
+    const a11yLink = document.querySelector(SELECTORS.TOOGLE_BTN_KEYNAV);
+
+    if (a11yLink) {
+        a11yLink.addEventListener('click', (e) => {
+            const isMobile = window.matchMedia('(max-width: 991px)').matches;
+
+            if (isMobile) {
+                e.preventDefault();
+                asideDialog.open();
+            }
+        });
+    }
 
     if (__DEV__) {
         console.log('✅ Menú contextual: Wrapper y Botón generados.');

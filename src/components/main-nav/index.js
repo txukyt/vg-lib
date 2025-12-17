@@ -6,7 +6,7 @@ import Dialog from '@/components/dialog/Dialog.js';
 export const initMainNav = () => {
     if (__DEV__) console.log('🏗️ Inicializando <nav class="main-nav"> ...');
   new MainNav().mount();
-  document.body.classList.contains('entorno-www') ? initSearchDialog() : null;
+  document.body.classList.contains('entorno-www') && initSearchDialog();
 };
 
 const initSearchDialog = () => {
