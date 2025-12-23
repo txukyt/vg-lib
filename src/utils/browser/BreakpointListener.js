@@ -9,7 +9,7 @@ export default class BreakpointListener {
    */
   constructor(query, callback) {
     if (__DEV__) {
-      this._debug = true; 
+      this._debug = false; 
     }
 
     // Si pasas un número, asumimos min-width en px

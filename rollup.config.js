@@ -68,7 +68,8 @@ const buildIife = {
     file: "dist/j38-lib.iife.js",
     format: "iife",
     name: "VGLib",
-    sourcemap: true
+    sourcemap: true,
+    inlineDynamicImports: true
   },
   plugins: [...basePlugins,
     isProduction && terser()

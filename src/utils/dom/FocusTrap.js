@@ -16,7 +16,7 @@ export default class FocusTrap {
 
   constructor(element) {
     if (__DEV__) {
-      this._debug = true; 
+      this._debug = false; 
     }
 
     this.#element = typeof element === 'string' 

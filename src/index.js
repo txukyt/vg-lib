@@ -1,18 +1,7 @@
-import { configure } from '@/core/config.js';
+export { initialize } from '@/core/init.js';
 
-//export { initialize } from '@/core/init.js';
-export { hello } from '@/components/hello.js';
-export { showVersion } from '@/utils/env/version.js';
-/*export { alert } from '@/components/alerts/index.js';
-export { aside } from '@/components/aside.js';
-export { defineCookies } from '@/components/cookies/index.js';
-*/
-export { defineHeader } from '@/components/header/index.js';
 
-export { initMainNav } from '@/components/main-nav/index.js';
-
-export { initContextualMenu } from '@/components/aside.js';
-
-export async function init(options) {
-  configure(options);
-}
+// export { hello } from '@/components/hello.js';
+// export { showVersion } from '@/utils/env/version.js';
+// export { defineHeader } from '@/components/header/index.js';
+// export { initContextualMenu } from '@/components/aside.js';

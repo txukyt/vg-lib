@@ -1,25 +1,24 @@
 // src/core/init.js
-import { showVersion } from '@/utils/browser/version';
-import { init as initI18n } from '@/i18n';
-import { init as initBreadcrumb } from '@/components/breadcrumb';
-import { init as initButtons } from '@/components/buttons';
-import { aside } from '@/components/aside';
-/*import { ready } from '@/utils/dom/ready';*/
 
-// Lista de funciones de inicialización
+import { showVersion } from '@/utils/browser/version';
+import { init as initDictionary } from '@/i18n';
+import { init as initMainNav } from '@/components/main-nav';
+import { init as initAside } from '@/components/aside';
+import { init as initBreadcrumb } from '@/components/breadcrumb';
+
 const inits = [
-  showVersion,
-  initI18n,
-  initButtons,
+  initMainNav,
+  initAside,
   initBreadcrumb,
-  aside?.enableOnMobile,
-  // aquí añadirás futuras inicializaciones
 ];
 
-export const initialize = () => {
-  inits.forEach((fn) => typeof fn === 'function' && fn());
-};
+export const initialize = async () => {
+  showVersion();
+  await initDictionary();
 
-/*if (typeof window !== 'undefined') {
-  ready(() => initialize());
-}*/
+  const promises = inits
+    .filter(fn => typeof fn === 'function')
+    .map(fn => fn());
+
+  await Promise.all(promises);
+};

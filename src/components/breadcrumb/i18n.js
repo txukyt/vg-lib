@@ -6,7 +6,7 @@ import es from './locales/es.json';
 export const NS = 'breadcrumb';
 
 const resources = {
-  es: { translation: es },
+  es: es,
 };
 
 export async function registerBreadcrumbI18n() {

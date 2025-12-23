@@ -5,13 +5,20 @@
   },
   "dialog": {
     "label" : {
-      "default": "Ventana emergente",
-      "menuContextual": "Menú contextual",
       "menuPrincipal": "Menú principal",
       "menuBusqueda": "Menú de búsqueda",
       "menuFiltros": "Menú de filtros"
     },
-    "cerrar": "Cerrar ventana"
+    "general": {
+      "open": "Abrir {{name}}",
+      "close": "Cerrar {{name}}",
+      "goback": "Volver a {{name}}"
+    },
+    "modules" : {
+      "search": "Buscador",
+      "menu": "Menú",
+      "aside": "Menú contextual"
+    }
   },
   "extra": {
     "menu": "Más",

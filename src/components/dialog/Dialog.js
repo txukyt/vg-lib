@@ -26,13 +26,12 @@ export default class Dialog {
 
     constructor({ dialogSelector, closeBtnSelector = "#dialog-close", openBtnSelector, contentSelector, options = {} }) {
         if (__DEV__) {
-            this._debug = true;
+            this._debug = false;
         }
         const defaults = {
             className: 'mobile-drawer',
             animationClass: 'drawer-top',
             breakpoint: BREAKPOINT_DESKTOP,
-            ariaLabel: t("dialog.label.default"),
         }
 
         this.#settings = { ...defaults, ...options };
@@ -89,18 +88,30 @@ export default class Dialog {
     }
 
     #setupA11y() {
+        const ariaLabel = this.#settings.ariaLabel;
+
+        if (__DEV__ && !ariaLabel) {
+            console.warn('[Dialog] Aviso: No se ha proporcionado ariaLabel en las opciones de configuración para el diálogo. Esto puede afectar la accesibilidad.');
+            return;
+        }
+
         if (!this.#dialog.getAttribute('aria-label')) {
             setAriaAttributes(this.#dialog, {
-                label: this.#settings.ariaLabel
+                label: ariaLabel
             });
         }
         if (!this.#openBtn.getAttribute('aria-controls')) {
             setAriaControls(this.#openBtn, this.#dialog.id);
             setAriaHasPopup(this.#openBtn);
         }
+        if (!this.#openBtn.getAttribute('aria-label')) {
+            setAriaAttributes(this.#openBtn, {
+                label: t('dialog.general.open', { name: ariaLabel })
+            });
+        }
         if (!this.#closeBtn.getAttribute('aria-label')) {
             setAriaAttributes(this.#closeBtn, {
-                label: t("dialog.cerrar")
+                label: t('dialog.general.close', { name: ariaLabel })
             });
         }
     }

@@ -6,6 +6,9 @@ import eu from './locales/eu.json';
 import en from './locales/en.json';
 import fr from './locales/fr.json';
 
+
+let isInitialized = false;
+
 const resources = {
   es: { global: es },
   eu: { global: eu },
@@ -14,6 +17,11 @@ const resources = {
 };
 
 export async function init() {
+
+  if (isInitialized) return;
+
+  if(__DEV__) console.log('⚙️ Inicializando diccionario i18n...');
+
   await i18next.init({
     lng: getLang(),
     fallbackLng: 'es',
@@ -21,6 +29,8 @@ export async function init() {
     debug: false,
     resources,
   });
+
+  isInitialized = true;
 }
 
 export function extendI18next(namespace, translationsByLang) {
@@ -44,6 +54,6 @@ export function t(key, options = {}) {
   return i18next.t(key, options);
 }
 
-(async () => {
+/*(async () => {
   await init();
-})();
+})();*/
