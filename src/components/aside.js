@@ -60,8 +60,6 @@ export const init = async () => {
          }
     });
 
-    asideDialog.mount();
-
     const a11yLink = document.querySelector(SELECTORS.TOOGLE_BTN_KEYNAV);
 
     if (a11yLink) {

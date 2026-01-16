@@ -29,7 +29,10 @@ const basePlugins = [
       ]}),
   resolve(),
   json(),
-  babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
+  babel({ 
+    babelHelpers: "bundled", 
+    exclude: "node_modules/**",
+   }),
   replace({
     preventAssignment: true,
     __DEV__: JSON.stringify(process.env.NODE_ENV !== "prod"),

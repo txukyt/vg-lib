@@ -33,7 +33,12 @@ export async function init() {
   isInitialized = true;
 }
 
-export function extendI18next(namespace, translationsByLang) {
+export async function extendI18next(namespace, translationsByLang) {
+
+  if (!isInitialized) {
+    await init();
+  }
+
   Object.entries(translationsByLang).forEach(([lng, translations]) => {
     const hasNamespace = i18next.hasResourceBundle(lng, namespace);
     if (!hasNamespace) {

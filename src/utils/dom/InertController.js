@@ -3,69 +3,57 @@ import { enableScroll, disableScroll } from "@/utils/dom/scroll.js";
 export default class InertController {
   #targets = new Set();
   #lockScroll;
+  #scrollContainer; // 1. Nuevo campo privado para guardar quién se bloquea
 
   /**
-   * @param {string|HTMLElement|NodeList|Array} targets - Lo que quieres bloquear
-   * @param {boolean} lockScroll - Si debe bloquear el scroll del body
+   * @param {string|HTMLElement|NodeList|Array} targets - Elementos a volver inertes
+   * @param {Object} options - Configuración
+   * @param {boolean} [options.lockScroll=true] - Si debe bloquear el scroll
+   * @param {string|HTMLElement} [options.scrollContainer=document.body] - El elemento al que quitar el scroll
    */
-  constructor(targets = null, lockScroll = true) {
+  constructor(targets = null, options = {}) {
+    // 2. Desestructuramos las opciones con valores por defecto
+    const { 
+        lockScroll = true, 
+        scrollContainer = document.body // Por defecto el body
+    } = options;
+
     this.#lockScroll = lockScroll;
+    this.#scrollContainer = scrollContainer;
     
     if (targets) {
       this.add(targets);
     }
   }
 
-  /**
-   * Método Universal para añadir objetivos.
-   * Acepta: strings, elementos, NodeLists o Arrays mixtos.
-   */
   add(input) {
     const elements = this.#resolveElements(input);
     elements.forEach(el => this.#targets.add(el));
   }
 
-  /**
-   * Método Mágico (Privado): Convierte cualquier entrada en un array de Elementos
-   */
   #resolveElements(input) {
-    // 1. Si es nulo o undefined
     if (!input) return [];
-
-    // 2. Si es un String (Selector CSS)
     if (typeof input === 'string') {
       return Array.from(document.querySelectorAll(input));
     }
-
-    // 3. Si es un Elemento DOM único
-    if (input instanceof Element) {
+    if (input.nodeType === 1) {
       return [input];
     }
-
-    // 4. Si es una colección (NodeList, HTMLCollection o Array)
-    if (input instanceof NodeList || input instanceof HTMLCollection || Array.isArray(input)) {
-      // Recursividad: Por si pasas un array mixto ['.clase', divElement]
+    if (input.length !== undefined && typeof input !== 'function') {
       return Array.from(input).flatMap(item => this.#resolveElements(item));
     }
 
     return [];
   }
 
-  /**
-   * Bloquea hijos excepto la rama activa (Recursivo)
-   */
   addParentExcept(parent, keepActive) {
-    // Usamos el resolver para obtener el primer elemento válido
     const parentEl = this.#resolveElements(parent)[0];
     const activeEl = this.#resolveElements(keepActive)[0];
 
     if (!parentEl || !activeEl) return;
 
-    // 1. Bloqueo recursivo hacia abajo
     this.#blockSiblingsPath(parentEl, activeEl);
 
-    // 2. Limpieza de seguridad hacia arriba (Ancestros)
-    // Aseguramos que ningún padre del elemento activo haya caído en la lista negra por error
     let current = activeEl.parentElement;
     while (current && current !== document.body) {
       if (this.#targets.has(current)) {
@@ -79,7 +67,6 @@ export default class InertController {
   #blockSiblingsPath(container, target) {
     Array.from(container.children).forEach(child => {
       if (child === target) return;
-
       if (child.contains(target)) {
         this.#blockSiblingsPath(child, target);
       } else {
@@ -89,25 +76,24 @@ export default class InertController {
   }
 
   lock() {
-    if (this.#lockScroll) {
-      // Usa tu utilidad o clase CSS preferida
-      disableScroll();
+    // 4. Pasamos el contenedor a la función de utilidad
+    if (this.#lockScroll && this.#scrollContainer) {
+      disableScroll(this.#scrollContainer);
     }
     
     this.#targets.forEach(el => {
-      // Seguridad: Nunca bloquear el elemento que tiene el foco
-      if (el.contains(document.activeElement)) return;
-
+      //if (el.contains(document.activeElement)) return;
       if (el) {
         el.setAttribute('inert', '');
-        el.setAttribute('aria-hidden', 'true');
+        //el.setAttribute('aria-hidden', 'true');
       }
     });
   }
 
   unlock() {
-    if (this.#lockScroll) {
-      enableScroll();
+    // 5. Pasamos el contenedor para desbloquear
+    if (this.#lockScroll && this.#scrollContainer) {
+      enableScroll(this.#scrollContainer);
     }
     
     this.#targets.forEach(el => {
@@ -116,11 +102,8 @@ export default class InertController {
         el.removeAttribute('aria-hidden');
       }
     });
-    // Opcional: Limpiar el Set al desbloquear para empezar de cero la próxima vez
-    // this.#targets.clear(); 
   }
   
-  // Método extra para limpiar manualmente
   clear() {
       this.unlock();
       this.#targets.clear();

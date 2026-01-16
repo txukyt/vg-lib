@@ -1,0 +1,43 @@
+name: Test Workflow
+
+# Workflow de prueba simple para verificar que GitHub Actions funciona
+on:
+  push:
+    branches: [ main, develop, master ]
+  pull_request:
+    branches: [ main, develop, master ]
+  workflow_dispatch: # Permite ejecutarlo manualmente
+
+jobs:
+  test-connection:
+    name: Verificar conexión
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Verificar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Mostrar información
+        run: |
+          echo "✅ GitHub Actions está funcionando correctamente"
+          echo "📦 Node.js version: $(node --version)"
+          echo "📦 npm version: $(npm --version)"
+          echo "📁 Directorio actual: $(pwd)"
+          echo "📁 Archivos en raíz:"
+          ls -la
+      
+      - name: Verificar package.json
+        run: |
+          if [ -f package.json ]; then
+            echo "✅ package.json encontrado"
+            echo "📦 Nombre del proyecto: $(node -p "require('./package.json').name")"
+            echo "📦 Versión: $(node -p "require('./package.json').version")"
+          else
+            echo "❌ package.json no encontrado"
+            exit 1
+          fi

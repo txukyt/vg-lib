@@ -12,5 +12,5 @@ const resources = {
 };
 
 export async function registerCookiesI18n() {
-  extendI18next(NS, resources);
+  return extendI18next(NS, resources);
 }

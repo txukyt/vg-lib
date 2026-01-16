@@ -92,6 +92,7 @@ export class Header extends HTMLElement {
 
     if(urlVpn.includes(hostname)) {
       templateNode.querySelector('a[data-i18n-title="header:web"]').parentNode.remove();
+      templateNode.querySelector('.nav-link__search').parentNode.remove();
       templateNode.querySelector('form#frmBusqueda').parentNode.remove();
     } else {
       templateNode.querySelector('span[data-i18n="header:web"]').closest('a').href = `${urlWeb}/wb021/was/we001Action.do?accionWe001=ficha&accion=home&idioma=${this.#locale}&lang=${this.#locale}&locale=${this.#locale}`;

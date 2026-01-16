@@ -1,8 +1,19 @@
 // /src/js/components/main-nav/index.js
-import MainNav from "@/components/main-nav/MainNav.js";
 
-export const init = () => {
-    if (__DEV__) console.log('⚙️ Inicializando <nav class="main-nav"> ...');
+const SELECTORS = {
+  HEADER : 'header.header > .header-main'
+};
+
+export const init = async () => {
+
+  const headerWeb = document.querySelector(SELECTORS.HEADER);
+
+  if (!headerWeb) return;
+
+  const { default: MainNav } = await import('@/components/main-nav/MainNav.js');
+
+  if (__DEV__) console.log('⚙️ Inicializando <nav class="main-nav"> ...');
+  
   new MainNav().mount();
 };
 

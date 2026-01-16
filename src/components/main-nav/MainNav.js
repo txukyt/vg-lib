@@ -6,7 +6,7 @@ const SELECTORS = {
     DIALOG: '#menu-dialog',
     CONTENT_WRAPPER: '.nav-area', 
     TOGGLE_BTN: '#menu-button',
-    BACK_BTN: '.dropdown-menu__back-btn'
+    BACK_BTN: '.js-back-accordion'
 };
 
 export default class MainNav extends Dialog {
@@ -15,8 +15,9 @@ export default class MainNav extends Dialog {
     
     #layoutController;
     #openMenuController;
-
-    #searchhDialog;
+    #accordionController;
+    #autoResetController;
+    #searchDialog;
 
     constructor() {
         super({
@@ -24,20 +25,31 @@ export default class MainNav extends Dialog {
             openBtnSelector: SELECTORS.TOGGLE_BTN,
             contentSelector: SELECTORS.CONTENT_WRAPPER,
             options: {
-                ariaLabel: t("dialog.modules.menu")
+                ariaLabel: t("dialog.modules.menu"),
+                animationClass: 'drawer-left',
+                handleEscape: false, // Desactivamos el manejo de Escape del Dialog base porque MainNav tiene su propia lógica
             }
         });
         
+        if (__DEV__) {
+            this._debug = false;
+        }
         const wrapper = document.querySelector(SELECTORS.CONTENT_WRAPPER);
         this.#details = wrapper ? wrapper.querySelectorAll('details') : [];
 
         this.#initSearchDialog();
+
+        if (__DEV__ && this._debug) {
+            import('@/devs/dom.js').then(({ initializeFocusListener }) => initializeFocusListener());
+        }
     }
 
     mount() {
         super.mount();
-        this.#setupAccordionBehavior();
         this.#setupAutoReset();
+        this.#setupAccordionBehavior();
+
+        this.contentElement.classList.remove('nav-area-loading');
     }
 
     onLayoutChange(isDesktop) {
@@ -91,11 +103,12 @@ export default class MainNav extends Dialog {
             }
         });
 
-      const focusableSelectors = [
-        'details:not(:open)',
-        `details:not(:open) ${SELECTORS.BACK_BTN}`,
-        '.main-menu--smartphone-utils'
-      ].join(',');    
+        const focusableSelectors = [
+            '.js-close-dialog',
+            'details:not(:open)',
+            'details:open summary',
+            '.nav-list--utils'
+        ].join(',');    
 
         this.#details.forEach(detail => {
             detail.addEventListener('toggle', () => {        
@@ -107,10 +120,10 @@ export default class MainNav extends Dialog {
                     const openSignal = this.#openMenuController.signal;
 
                     const elementos = dialog.querySelectorAll(focusableSelectors);
-                    this.#inertController = new InertController(elementos);
+                    this.#inertController = new InertController(elementos, { scrollContainer: `${SELECTORS.DIALOG} .dialog__content` });
                     this.#inertController.lock();
 
-                    detail.addEventListener('keydown', (e) => {
+                    document.addEventListener('keydown', (e) => {
                         if (e.key === 'Escape') {
                             e.preventDefault();
                             e.stopPropagation();
@@ -123,14 +136,19 @@ export default class MainNav extends Dialog {
                 } else {
                     this.#cleanupOpenMenu();
                 }
-            }), { signal };
+            }, { signal });
         });
 
     }
 
-    #setupDesktop(signal) {        
+    #setupDesktop(signal) {     
+        const searchDetail = document.querySelector('.search-area > .nav-list__accordion');
+        const detailsDesktop = searchDetail 
+            ? [...this.#details, searchDetail] 
+            : [...this.#details];
+
         document.addEventListener('click', (e) => {            
-            this.#details.forEach(detail => {
+            detailsDesktop.forEach(detail => {
                 if (detail.open) {
                     const isClickInside = detail.contains(e.target);
                     if (!isClickInside) {
@@ -151,6 +169,9 @@ export default class MainNav extends Dialog {
     }
 
     #setupAccordionBehavior() {
+        this.#accordionController = new AbortController();
+        const { signal } = this.#accordionController;
+
         this.#details.forEach(target => {
             target.addEventListener('toggle', () => {
                 if (target.open) {
@@ -160,16 +181,19 @@ export default class MainNav extends Dialog {
                         }
                     });
                 }
-            });
+            }, { signal });
         });
     }
 
     #setupAutoReset() {
+        this.#autoResetController = new AbortController();
+        const { signal } = this.#autoResetController;
+
         const dialogElement = document.querySelector(SELECTORS.DIALOG);
         if (dialogElement) {
             dialogElement.addEventListener('close', () => {
                 this.#closeAllDetails();
-            });
+            }, { signal });
         }
     }
 
@@ -184,15 +208,15 @@ export default class MainNav extends Dialog {
     }
 
     #initSearchDialog() {
-      if (__DEV__) console.log('⚙️ Inicializando <dialog id="search-dialog"> ...');
+        if (__DEV__) console.log('⚙️ Inicializando <dialog id="search-dialog"> ...');
     
-      const SELECTORS = {
-        DIALOG: '#search-dialog',
-        CONTENT_WRAPPER: '.main-nav__search-form', 
-        TOGGLE_BTN: '#search-dialog-button'
-      };
+        const SELECTORS = {
+            DIALOG: '#search-dialog',
+            CONTENT_WRAPPER: '.main-nav__search-form', 
+            TOGGLE_BTN: '#search-dialog-button'
+        };
     
-       this.#searchhDialog = new Dialog({
+        this.#searchDialog = new Dialog({
             dialogSelector: SELECTORS.DIALOG,
             openBtnSelector: SELECTORS.TOGGLE_BTN,
             contentSelector: SELECTORS.CONTENT_WRAPPER,
@@ -200,7 +224,34 @@ export default class MainNav extends Dialog {
                 ariaLabel: t("dialog.modules.search"),
             }
         });
+    }
 
-        this.#searchhDialog.mount();
+    destroy() {
+        // Limpieza de recursos específicos de MainNav
+        this.#cleanup();
+
+        // Limpiar event listeners de accordion y auto-reset
+        if (this.#accordionController) {
+            this.#accordionController.abort();
+            this.#accordionController = null;
+        }
+
+        if (this.#autoResetController) {
+            this.#autoResetController.abort();
+            this.#autoResetController = null;
+        }
+
+        // Destruir el SearchDialog si existe
+        if (this.#searchDialog) {
+            this.#searchDialog.destroy();
+            this.#searchDialog = null;
+        }
+
+        // Llamar al destroy del padre
+        super.destroy();
+
+        if (__DEV__ && this._debug) {
+            console.log('[MainNav] Instancia destruida y recursos liberados.');
+        }
     }
 }

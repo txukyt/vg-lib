@@ -6,19 +6,17 @@ function breadcrumbFactory(navNode) {
 }
 
 export async function init() {
-    const breadcrumbs = document.querySelectorAll(".breadcrumb");
+    const breadcrumb = document.querySelector(".breadcrumb");
 
-    if(!breadcrumbs) return;
+    if(!breadcrumb) return;
 
     if(__DEV__) console.log('⚙️ Inicializando <nav class="breadcrumb">...');
     
     await registerBreadcrumbI18n();
 
-    breadcrumbs.forEach((breadcrumb) => {
-        if (breadcrumb.tagName === "NAV") {
-            breadcrumbFactory(breadcrumb);
-        } else {
-            console.warn(t("breadcrumb.deprecated", { ns: NS }));
-        }
-    });
+    if (breadcrumb.tagName === "NAV") {
+        breadcrumbFactory(breadcrumb);
+    } else {
+        console.warn(t("breadcrumb.deprecated", { ns: NS }));
+    }
 }

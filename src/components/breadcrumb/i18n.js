@@ -10,5 +10,5 @@ const resources = {
 };
 
 export async function registerBreadcrumbI18n() {
-  extendI18next(NS, resources);
+  return extendI18next(NS, resources);
 }
