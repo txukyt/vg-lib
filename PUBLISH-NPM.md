@@ -28,9 +28,9 @@ Debería mostrar tu nombre de usuario.
 
 ## Paso 4: Verificar el nombre del paquete
 
-Tu paquete se llama `@txukyt/vg-lib` (con scope).
+Tu paquete se llama `@txukyt/j38-lib` (con scope).
 
-- Verifica que el nombre esté disponible: https://www.npmjs.com/package/@txukyt/vg-lib
+- Verifica que el nombre esté disponible: https://www.npmjs.com/package/@txukyt/j38-lib
 - Si no existe, puedes usarlo
 - Si existe, necesitarás cambiar el nombre en `package.json`
 
@@ -56,7 +56,7 @@ npm publish --access public
 
 ## Paso 7: Verificar que se publicó
 
-1. Ve a: https://www.npmjs.com/package/@txukyt/vg-lib
+1. Ve a: https://www.npmjs.com/package/@txukyt/j38-lib
 2. Deberías ver tu paquete publicado con la versión `1.2.3`
 
 ## Actualizar una versión existente
@@ -101,7 +101,7 @@ Cuando quieras publicar una nueva versión:
 Una vez publicado, otros pueden instalarlo con:
 
 ```bash
-npm install @txukyt/vg-lib
+npm install @txukyt/j38-lib
 ```
 
 ## Automatizar con GitHub Actions
