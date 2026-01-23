@@ -1,4 +1,4 @@
-export function uid(len = 7) {
+export default function uid(len = 7) {
   const array = new Uint8Array(len);
 
   crypto.getRandomValues(array);

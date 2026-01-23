@@ -28,7 +28,7 @@ export default class Dialog {
 
     constructor({ dialogSelector, closeBtnSelector = ".js-close-dialog", openBtnSelector, contentSelector, options = {} }) {
         if (__DEV__) {
-            this._debug = false;
+            this._debug = true;
         }
         const defaults = {
             className: 'mobile-drawer',
@@ -171,7 +171,11 @@ export default class Dialog {
 
     #handleResponsiveLayout(isDesktop) {
         this.#cleanup();
-        isDesktop ? this.#setupDesktop() : this.#setupMobile();
+
+        this.#currentController = new AbortController();
+        const { signal } = this.#currentController;
+
+        isDesktop ? this.setupDesktop(signal) : this.#setupMobile(signal);
 
         this.onLayoutChange(isDesktop);
     }
@@ -183,7 +187,7 @@ export default class Dialog {
         enableScroll();
     }
 
-    #setupMobile() {
+    #setupMobile(signal) {
 
         if (this.#content) {
             const targetContainer = this.#dialog.querySelector('.dialog__content');
@@ -198,12 +202,14 @@ export default class Dialog {
             teleport(this.#content, destination);
         }
 
-        this.#currentController = new AbortController();
-        const { signal } = this.#currentController;
-
         this.#openBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            this.open();
+            // Permitir que las clases hijas personalicen el comportamiento de open
+            if (typeof this.onOpenClick === 'function') {
+                this.onOpenClick(e);
+            } else {
+                this.open();
+            }
         }, { signal });
 
         this.#closeBtn.addEventListener('click', () => {
@@ -232,7 +238,8 @@ export default class Dialog {
         }
     }
 
-    #setupDesktop() {
+     // eslint-disable-next-line no-unused-vars
+    setupDesktop(_signal) {
         // En desktop, el contenido normalmente no se teleporta.
         // Las clases hijas pueden sobrescribir este método para añadir comportamiento específico.
     }
@@ -259,10 +266,10 @@ export default class Dialog {
     /**
      * Hook llamado cuando cambia el layout (mobile/desktop).
      * Las clases hijas pueden sobrescribir este método para añadir comportamiento específico.
-     * @param {boolean} isDesktop - true si el layout es desktop, false si es mobile
+     * @param {boolean} _isDesktop - true si el layout es desktop, false si es mobile
      */
     // eslint-disable-next-line no-unused-vars
-    onLayoutChange(isDesktop) {
+    onLayoutChange(_isDesktop) {
         // Método vacío por defecto, diseñado para ser sobrescrito por clases hijas
     }
 

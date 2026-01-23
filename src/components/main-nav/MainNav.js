@@ -1,4 +1,5 @@
 import Dialog from '@/components/dialog/Dialog.js';
+import SearchDialog from '@/components/dialog/SearchDialog.js';
 import { t } from '@/i18n';
 import InertController from '@/utils/dom/InertController';
 
@@ -166,6 +167,18 @@ export default class MainNav extends Dialog {
                 detail.removeAttribute('open');
             }, { signal });
         });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                detailsDesktop.forEach(detail => {
+                    if (detail.open) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.#closeMenu(detail);
+                    }
+                });
+            }
+        }, { signal });
     }
 
     #setupAccordionBehavior() {
@@ -216,14 +229,14 @@ export default class MainNav extends Dialog {
             TOGGLE_BTN: '#search-dialog-button'
         };
     
-        this.#searchDialog = new Dialog({
+        this.#searchDialog = new SearchDialog({
             dialogSelector: SELECTORS.DIALOG,
             openBtnSelector: SELECTORS.TOGGLE_BTN,
             contentSelector: SELECTORS.CONTENT_WRAPPER,
             options: {
                 ariaLabel: t("dialog.modules.search"),
             }
-        });
+        }).mount();
     }
 
     destroy() {
