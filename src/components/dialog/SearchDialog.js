@@ -39,4 +39,9 @@ export default class SearchDialog extends Dialog {
             }, { signal });
         }
     }
+
+    mount() {
+        super.mount();
+        window.vg.autocomplete.init();
+    }
 }
