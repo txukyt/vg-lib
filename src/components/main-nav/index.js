@@ -4,11 +4,10 @@ const SELECTORS = {
   HEADER : 'header.header > .header-main'
 };
 
-export const init = async () => {
-
+export const init = async () => { 
   const headerWeb = document.querySelector(SELECTORS.HEADER);
 
-  if (!headerWeb) return;
+  if (!headerWeb || document.body.classList.contains('entorno-blogs')) return;
 
   const { default: MainNav } = await import('@/components/main-nav/MainNav.js');
 
