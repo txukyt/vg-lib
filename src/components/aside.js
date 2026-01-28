@@ -53,7 +53,7 @@ export const init = async () => {
         openBtnSelector: `.${SELECTORS.TOGGLE_BTN_CLASS}`,
         contentSelector: `.${SELECTORS.CONTENT_WRAPPER}`,
         options: { 
-            animationClass: 'drawer-bottom', 
+            animationClass: 'drawer-top', 
             breakpoint: 991, 
             ariaLabel: t('dialog.modules.aside'),
             title: t('extra.menu')
