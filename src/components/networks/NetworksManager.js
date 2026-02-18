@@ -40,10 +40,25 @@ export default class NetworksManager {
     }
 
     #setupMobile() {
-        if (this.#placeholder && this.#placeholder.parentNode) {
-            this.#placeholder.parentNode.insertBefore(this.#listaRedes, this.#placeholder);
-            this.#placeholder.remove();
-            this.#placeholder = null;
+        const isEntornoWww = document.body.classList.contains('entorno-www');
+
+        if (isEntornoWww) {
+            // En móvil con entorno-www: mover al networks-container (como desktop)
+            if (this.#listaRedes && this.#containerRedes) {
+                // Si ya hay un placeholder, lo reutilizamos; si no, lo creamos
+                if (!this.#placeholder) {
+                    this.#placeholder = document.createComment('networks-placeholder');
+                    this.#listaRedes.parentNode.insertBefore(this.#placeholder, this.#listaRedes);
+                }
+                teleport(this.#listaRedes, this.#containerRedes);
+            }
+        } else {
+            // En móvil sin entorno-www: restaurar a posición original
+            if (this.#placeholder && this.#placeholder.parentNode) {
+                this.#placeholder.parentNode.insertBefore(this.#listaRedes, this.#placeholder);
+                this.#placeholder.remove();
+                this.#placeholder = null;
+            }
         }
     }
 

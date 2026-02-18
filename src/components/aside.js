@@ -54,7 +54,7 @@ export const init = async () => {
         contentSelector: `.${SELECTORS.CONTENT_WRAPPER}`,
         options: { 
             animationClass: 'drawer-top', 
-            breakpoint: 991, 
+            breakpoint: 992, 
             ariaLabel: t('dialog.modules.aside'),
             title: t('extra.menu')
          }

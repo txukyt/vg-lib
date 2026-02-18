@@ -6,12 +6,14 @@ import { init as initMainNav } from '@/components/main-nav';
 import { init as initAside } from '@/components/aside';
 import { init as initBreadcrumb } from '@/components/breadcrumb';
 import { init as initNetworks } from '@/components/networks';
+import { initEmptyParagraphChecker } from '@/utils/dom/emptyParagraphChecker';
 
 const inits = [
   initMainNav,
   initAside,
   initBreadcrumb,
   initNetworks,
+  initEmptyParagraphChecker
 ];
 
 export const initialize = async () => {

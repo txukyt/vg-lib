@@ -7,6 +7,7 @@ export * from '@/utils/browser/viewport';
 export * from '@/utils/data/hash';
 export * from '@/utils/data/uid';
 export * from '@/utils/dom/customElements';
+export * from '@/utils/dom/emptyParagraphChecker';
 export * from '@/utils/dom/ready';
 export * from '@/utils/env/version';
 export * from '@/utils/lang/lang';
