@@ -1,5 +1,5 @@
 {
-  "name": "@txukyt/j38-lib",
+  "name": "@dmorapedregosa/j38-lib",
   "version": "1.2.7",
   "description": "Librería compartida de utilidades para proyectos web del Ayuntamiento de Vitoria-Gasteiz",
   "type": "module",
@@ -63,7 +63,6 @@
   "dependencies": {
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-replace": "^6.0.2",
-    "buscador-vitoria-gasteiz": "file:../buscador/js-buscador/buscador-vitoria-gasteiz-1.0.0.tgz",
     "clean-jsdoc-theme": "^4.3.0",
     "copy-paste": "^2.2.0",
     "i18next": "^25.3.2",

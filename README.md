@@ -11,7 +11,7 @@ Diseñada como un conjunto modular reutilizable, con soporte para ES Modules, Ro
 ### Desde npm (cuando esté publicada):
 
 ```bash
-npm install @txukyt/j38-lib
+npm install @dmorapedregosa/j38-lib
 ```
 
 ### Desde GitHub directamente:
@@ -27,7 +27,7 @@ npm install github:txukyt/j38-lib
 ### En un entorno JavaScript moderno (ESM):
 
 ```js
-import { hello, showVersion } from '@txukyt/j38-lib';
+import { hello, showVersion } from '@dmorapedregosa/j38-lib';
 
 hello('Ane'); // Hola, Ane
 showVersion(); // Inicializando la libreria j38-lib de J38 con la versión: ${version}
