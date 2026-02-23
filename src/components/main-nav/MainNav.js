@@ -33,7 +33,7 @@ export default class MainNav extends Dialog {
         });
         
         if (__DEV__) {
-            this._debug = true;
+            this._debug = false;
         }
         const wrapper = document.querySelector(SELECTORS.CONTENT_WRAPPER);
         this.#details = wrapper ? wrapper.querySelectorAll('details') : [];
