@@ -54,7 +54,7 @@ const buildEsm = {
     format: 'esm',
     sourcemap: true,
     entryFileNames: '[name].js',
-    preserveModules: true,
+    preserveModules: false,
     preserveModulesRoot: 'src'
   },
   plugins: [...basePlugins, 
