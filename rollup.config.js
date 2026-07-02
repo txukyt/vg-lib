@@ -35,7 +35,7 @@ const basePlugins = [
    }),
   replace({
     preventAssignment: true,
-    __DEV__: JSON.stringify(process.env.NODE_ENV !== "prod"),
+    __DEV__: JSON.stringify(!isProduction),
      __URL_MAIN__: JSON.stringify(process.env.URL_MAIN),
      __URL_INTRA__: JSON.stringify(process.env.URL_INTRA),
      __URL_WEB__: JSON.stringify(process.env.URL_WEB),
@@ -52,7 +52,7 @@ const buildEsm = {
   output: {
     dir: 'dist/esm',
     format: 'esm',
-    sourcemap: true,
+    sourcemap: !isProduction,
     entryFileNames: '[name].js',
     preserveModules: false,
     preserveModulesRoot: 'src'
@@ -71,7 +71,7 @@ const buildIife = {
     file: "dist/j38-lib.iife.js",
     format: "iife",
     name: "VGLib",
-    sourcemap: true,
+    sourcemap: !isProduction,
     inlineDynamicImports: true
   },
   plugins: [...basePlugins,

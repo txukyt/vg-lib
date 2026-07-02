@@ -1,6 +1,6 @@
 {
   "name": "@dmorapedregosa/j38-lib",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Librería compartida de utilidades para proyectos web del Ayuntamiento de Vitoria-Gasteiz",
   "type": "module",
   "main": "dist/j38-lib.iife.js",
@@ -9,17 +9,13 @@
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/j38-lib.iife.js"
-    },
-    "./components/header": {
-      "import": "./dist/esm/components/header/index.js",
-      "require": "./dist/j38-lib.iife.js"
     }
   },
   "scripts": {
     "clean": "rmdir /s /q dist",
     "lint": "eslint .",
-    "build": "cross-env NODE_ENV=dev rollup -c ",
-    "build:prod": "cross-env NODE_ENV=prod rollup -c",
+    "build": "npm run clean && cross-env NODE_ENV=dev rollup -c ",
+    "build:prod": "npm run clean && cross-env NODE_ENV=prod rollup -c",
     "prebuild": "npm run lint",
     "postbuild": "npm run docs",
     "deploy:dev": "node scripts/deploy.js dev",

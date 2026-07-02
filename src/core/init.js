@@ -6,6 +6,7 @@ import { init as initMainNav } from '@/components/main-nav';
 import { init as initAside } from '@/components/aside';
 import { init as initBreadcrumb } from '@/components/breadcrumb';
 import { init as initNetworks } from '@/components/networks';
+import { init as initBuscadorOdt } from '@/components/buscador-odt';
 import { initEmptyParagraphChecker } from '@/utils/dom/emptyParagraphChecker';
 
 const inits = [
@@ -13,6 +14,7 @@ const inits = [
   initAside,
   initBreadcrumb,
   initNetworks,
+  initBuscadorOdt,
   initEmptyParagraphChecker
 ];
 
